@@ -1,4 +1,14 @@
-function sendMail(e) {
-    e.preventDefault();
-    alert("Thank you for your message! Please email me directly at nikhilsborade3@gmail.com");
+const toggle = document.getElementById("themeToggle");
+
+// Auto-detect Windows theme
+if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+    document.body.classList.add("light");
+    toggle.textContent = "🌞";
 }
+
+// Manual toggle
+toggle.addEventListener("click", () => {
+    document.body.classList.toggle("light");
+    toggle.textContent =
+        document.body.classList.contains("light") ? "🌞" : "🌙";
+});
