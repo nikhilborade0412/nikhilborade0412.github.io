@@ -9,7 +9,7 @@
     --accent-soft: rgba(0,212,255,0.35);
 }
 
-/* GLOBAL */
+/* ================= GLOBAL ================= */
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
@@ -25,7 +25,7 @@ body.light {
     color: var(--text-light);
 }
 
-/* GLASS CARDS */
+/* ================= GLASS ================= */
 .glass {
     background: var(--glass-dark);
     backdrop-filter: blur(18px);
@@ -42,7 +42,7 @@ body.light .glass {
     background: var(--glass-light);
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 header {
     text-align: center;
 }
@@ -59,7 +59,7 @@ header {
     animation: glowPulse 3s infinite ease-in-out;
 }
 
-/* LINKS */
+/* ================= LINKS ================= */
 .links a {
     margin: 0 10px;
     color: var(--accent);
@@ -83,7 +83,7 @@ header {
     width: 100%;
 }
 
-/* BUTTON */
+/* ================= BUTTON ================= */
 .btn {
     display: inline-block;
     margin-top: 15px;
@@ -102,7 +102,29 @@ header {
     box-shadow: 0 12px 30px rgba(0,212,255,0.6);
 }
 
-/* SKILLS */
+/* ================= EDUCATION ================= */
+.education {
+    padding-left: 5px;
+}
+
+.education h3 {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+.edu-university {
+    margin-top: 4px;
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.edu-duration {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* ================= SKILLS ================= */
 .skills span {
     display: inline-block;
     background: rgba(255,255,255,0.18);
@@ -117,14 +139,13 @@ header {
     transform: translateY(-4px);
 }
 
-/* PROJECT GRID */
+/* ================= PROJECTS ================= */
 .projects {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 22px;
 }
 
-/* PROJECT CARD */
 .card {
     background: rgba(255,255,255,0.18);
     padding: 15px;
@@ -148,7 +169,7 @@ body.light .card {
     box-shadow: 0 20px 40px rgba(0,212,255,0.4);
 }
 
-/* THEME TOGGLE */
+/* ================= THEME TOGGLE ================= */
 #themeToggle {
     position: fixed;
     top: 20px;
@@ -163,13 +184,61 @@ body.light .card {
     box-shadow: 0 8px 25px rgba(0,212,255,0.6);
 }
 
-/* FOOTER */
+/* ================= CONTACT FORM ================= */
+#contactForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+#contactForm textarea {
+    grid-column: 1 / -1;
+    resize: none;
+    height: 120px;
+}
+
+#contactForm input,
+#contactForm textarea {
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #0b1d2a;
+}
+
+#contactForm button {
+    grid-column: 1 / -1;
+    padding: 14px;
+    border-radius: 30px;
+    border: none;
+    background: linear-gradient(135deg, #00d4ff, #008cff);
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#contactForm button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 212, 255, 0.5);
+}
+
+#statusMsg {
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+/* ================= FOOTER ================= */
 footer {
     text-align: center;
     opacity: 0.85;
 }
 
-/* ANIMATIONS */
+/* ================= ANIMATIONS ================= */
 @keyframes reveal {
     to {
         opacity: 1;
@@ -181,4 +250,11 @@ footer {
     0% { box-shadow: 0 0 18px var(--accent-soft); }
     50% { box-shadow: 0 0 35px rgba(0,212,255,0.7); }
     100% { box-shadow: 0 0 18px var(--accent-soft); }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 600px) {
+    #contactForm {
+        grid-template-columns: 1fr;
+    }
 }

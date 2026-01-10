@@ -15,18 +15,16 @@
     <meta property="og:image" content="images/nikhil.png">
     <meta property="og:url" content="https://nikhilborade0412.github.io">
 
-    <!-- Google Analytics (REPLACE G-XXXXXXXXXX) -->
+    <!-- Google Analytics (replace ID later if needed) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
     </script>
 
-    <!-- EmailJS -->
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-
+    <!-- Fonts & CSS -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -35,8 +33,9 @@
 
 <button id="themeToggle">🌙</button>
 
+<!-- ================= HEADER ================= -->
 <header class="glass">
-    <img src="images/nikhil.png" alt="Nikhil Borade" class="profile-img">
+    <img src="images/nikhil.jpg" alt="Nikhil Borade" class="profile-img">
 
     <h1>Nikhil Borade</h1>
     <p class="role">Data Scientist | Machine Learning Engineer</p>
@@ -52,15 +51,29 @@
     <a class="btn" href="resume.pdf" download>Download Resume</a>
 </header>
 
+<!-- ================= ABOUT ================= -->
 <section class="glass">
     <h2>About Me</h2>
     <p>
-        Data Scientist and Machine Learning Engineer with hands-on experience in EDA,
-        Machine Learning, NLP, dashboards, and deploying ML applications using Streamlit.
-        Passionate about solving real-world business problems using data and AI.
+        Data Scientist and Machine Learning Engineer with hands-on experience in
+        EDA, Machine Learning, NLP, dashboards, and deploying ML applications using
+        Streamlit. Passionate about solving real-world business problems using data
+        and AI.
     </p>
 </section>
 
+<!-- ================= EDUCATION ================= -->
+<section class="glass">
+    <h2>Education</h2>
+
+    <div class="education">
+        <h3>Bachelor of Computer Science</h3>
+        <p class="edu-university">Savitribai Phule Pune University</p>
+        <p class="edu-duration">July 2022 – May 2025</p>
+    </div>
+</section>
+
+<!-- ================= SKILLS ================= -->
 <section class="glass">
     <h2>Skills</h2>
     <div class="skills">
@@ -76,6 +89,7 @@
     </div>
 </section>
 
+<!-- ================= PROJECTS ================= -->
 <section class="glass">
     <h2>Projects</h2>
     <div class="projects">
@@ -92,6 +106,13 @@
             <h3>Fake News Detection (NLP)</h3>
             <p>TF-IDF + Naive Bayes based NLP system.</p>
             <a href="https://github.com/nikhilborade0412/true-fake-news-detection-nlp" target="_blank">View Project</a>
+        </div>
+
+        <div class="card">
+            <img src="images/churn.png">
+            <h3>Customer Churn Prediction (KNN)</h3>
+            <p>KNN-based churn prediction with preprocessing and evaluation.</p>
+            <a href="https://github.com/nikhilborade0412/KNN-Classification-Telco-Customer-Churn-Prediction" target="_blank">View Project</a>
         </div>
 
         <div class="card">
@@ -122,9 +143,11 @@
             <a href="https://github.com/nikhilborade0412/Library-Management-System-SQL" target="_blank">View Project</a>
         </div>
 
+
     </div>
 </section>
 
+<!-- ================= CONTACT ================= -->
 <section class="glass">
     <h2>Contact Me</h2>
 
