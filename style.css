@@ -257,4 +257,34 @@ footer {
     #contactForm {
         grid-template-columns: 1fr;
     }
+
+/* ================= CONTACT INFO (FINAL SECTION) ================= */
+.contact-info h2 {
+    margin-bottom: 18px;
+}
+
+.contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 1.05rem;
+    font-weight: 500;
+}
+
+.contact-item .icon {
+    font-size: 1.3rem;
+    color: var(--accent);
+}
+
+/* Light mode fix */
+body.light .contact-item {
+    color: var(--text-light);
+}
+
 }
