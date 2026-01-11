@@ -1,127 +1,242 @@
 :root {
+    --bg-dark: linear-gradient(135deg, #0b1d2a, #0f3057, #00587a);
+    --bg-light: linear-gradient(135deg, #e3f2fd, #f0f9ff);
+    --glass-dark: rgba(255,255,255,0.12);
+    --glass-light: rgba(255,255,255,0.7);
+    --text-dark: #ffffff;
+    --text-light: #0b1d2a;
     --accent: #00d4ff;
-    --bg-dark: #0b1d2a;
-    --glass: rgba(255,255,255,0.12);
+    --accent-soft: rgba(0,212,255,0.35);
 }
 
-html { scroll-behavior: smooth; }
-
+/* ================= GLOBAL ================= */
 body {
     margin: 0;
-    padding: 120px 40px 40px;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg,#0b1d2a,#0f3057);
-    color: #fff;
+    background: var(--bg-dark);
+    color: var(--text-dark);
+    padding: 40px;
+    transition: background 0.4s ease, color 0.4s ease;
 }
 
-/* Navbar */
-.navbar {
-    position: fixed;
-    top: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 999;
+/* LIGHT MODE */
+body.light {
+    background: var(--bg-light);
+    color: var(--text-light);
 }
-.navbar ul {
-    display: flex;
-    gap: 22px;
-    list-style: none;
-    padding: 10px 22px;
-}
-.navbar a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
-}
-.navbar a:hover { color: var(--accent); }
 
-/* Glass */
+/* ================= GLASS ================= */
 .glass {
-    background: var(--glass);
+    background: var(--glass-dark);
     backdrop-filter: blur(18px);
     border-radius: 20px;
     padding: 30px;
-    margin-bottom: 35px;
-}
-
-/* Reveal animation */
-.reveal {
+    margin-bottom: 30px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
     opacity: 0;
     transform: translateY(40px);
-    animation: fadeUp 0.9s ease forwards;
+    animation: reveal 0.8s ease forwards;
 }
 
-@keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
+body.light .glass {
+    background: var(--glass-light);
 }
 
-/* Profile */
+/* ================= HEADER ================= */
+header {
+    text-align: center;
+}
+
+/* PROFILE IMAGE */
 .profile-img {
-    width: 140px;
+    width: 145px;
+    height: 145px;
     border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
     border: 4px solid var(--accent);
-    box-shadow: 0 0 25px rgba(0,212,255,0.5);
+    box-shadow: 0 0 25px var(--accent-soft);
+    animation: glowPulse 3s infinite ease-in-out;
 }
 
-/* Buttons */
-.btn, button {
-    background: linear-gradient(135deg,#00d4ff,#008cff);
-    border: none;
+/* ================= LINKS ================= */
+.links a {
+    margin: 0 10px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+}
+
+.links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.links a:hover::after {
+    width: 100%;
+}
+
+/* ================= BUTTON ================= */
+.btn {
+    display: inline-block;
+    margin-top: 15px;
     padding: 12px 26px;
+    background: linear-gradient(135deg, #00d4ff, #008cff);
+    color: #000;
     border-radius: 30px;
+    text-decoration: none;
     font-weight: 600;
+    box-shadow: 0 8px 20px rgba(0,212,255,0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0,212,255,0.6);
+}
+
+/* ================= EDUCATION ================= */
+.education {
+    padding-left: 5px;
+}
+
+.education h3 {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+.edu-university {
+    margin-top: 4px;
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.edu-duration {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* ================= SKILLS ================= */
+.skills span {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    padding: 8px 16px;
+    border-radius: 25px;
+    margin: 6px;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.skills span:hover {
+    background: var(--accent-soft);
+    transform: translateY(-4px);
+}
+
+/* ================= PROJECTS ================= */
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+}
+
+.card {
+    background: rgba(255,255,255,0.18);
+    padding: 15px;
+    border-radius: 18px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
     cursor: pointer;
 }
 
-/* Skills */
-.skills span {
-    display: inline-block;
-    background: rgba(255,255,255,0.2);
-    padding: 8px 14px;
-    border-radius: 20px;
-    margin: 6px;
-    transition: transform .3s;
+body.light .card {
+    background: rgba(255,255,255,0.85);
 }
-.skills span:hover { transform: translateY(-4px); }
 
-/* Projects */
-.projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-    gap: 22px;
-}
-.card {
-    background: rgba(255,255,255,0.18);
-    border-radius: 18px;
-    padding: 15px;
-    transition: transform .4s, box-shadow .4s;
-}
-.card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,212,255,0.4);
-}
 .card img {
     width: 100%;
     border-radius: 14px;
+    margin-bottom: 10px;
 }
 
-/* Contact */
-form {
-    display: grid;
-    gap: 15px;
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,212,255,0.4);
 }
-input, textarea {
-    padding: 14px;
+
+/* ================= THEME TOGGLE ================= */
+#themeToggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #00d4ff, #008cff);
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(0,212,255,0.6);
+}
+
+/* ================= CONTACT FORM ================= */
+#contactForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+#contactForm textarea {
+    grid-column: 1 / -1;
+    resize: none;
+    height: 120px;
+}
+
+#contactForm input,
+#contactForm textarea {
+    padding: 14px 16px;
     border-radius: 12px;
     border: none;
+    outline: none;
+    font-size: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #0b1d2a;
 }
 
-/* Footer */
+#contactForm button {
+    grid-column: 1 / -1;
+    padding: 14px;
+    border-radius: 30px;
+    border: none;
+    background: linear-gradient(135deg, #00d4ff, #008cff);
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#contactForm button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 212, 255, 0.5);
+}
+
+#statusMsg {
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+/* ================= FOOTER ================= */
 footer {
     text-align: center;
-    opacity: .8;
+    opacity: 0.85;
 }
-<<<<<<< HEAD
 
 /* ================= ANIMATIONS ================= */
 @keyframes reveal {
@@ -173,4 +288,3 @@ body.light .contact-item {
 }
 
 }
-
