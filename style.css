@@ -287,4 +287,11 @@ body.light .contact-item {
     color: var(--text-light);
 }
 
+/* About Me formatting */
+section.glass p strong {
+    color: var(--accent);
+    font-weight: 600;
+}
+    
+
 }
