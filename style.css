@@ -33,9 +33,16 @@ body.light {
     padding: 30px;
     margin-bottom: 30px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+
+    /* Scroll animation setup */
     opacity: 0;
     transform: translateY(40px);
-    animation: reveal 0.8s ease forwards;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.glass.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 body.light .glass {
@@ -134,7 +141,7 @@ header {
     transform: translateY(-4px);
 }
 
-/* ================= PROJECTS ================= */
+/* ================= PROJECTS & CERTIFICATES ================= */
 .projects {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -159,7 +166,7 @@ header {
     box-shadow: 0 20px 40px rgba(0,212,255,0.4);
 }
 
-/* ================= CONTACT INFO ================= */
+/* ================= CONTACT FORM ================= */
 #contactForm {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -172,43 +179,12 @@ header {
     grid-column: 1 / -1;
 }
 
-
-/* ================= CERTIFICATES (2 PER ROW) ================= */
-.cert-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    margin-top: 20px;
-}
-
-.cert-card {
-    background: rgba(255,255,255,0.15);
-    padding: 15px;
-    border-radius: 18px;
-    text-align: center;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.cert-card img {
-    width: 100%;
-    border-radius: 12px;
-}
-
-.cert-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 18px 35px rgba(0,212,255,0.4);
-}
-
 /* ================= ABOUT TEXT ================= */
 section.glass p strong {
     color: var(--accent);
 }
 
 /* ================= ANIMATIONS ================= */
-@keyframes reveal {
-    to { opacity: 1; transform: translateY(0); }
-}
-
 @keyframes glowPulse {
     0% { box-shadow: 0 0 18px var(--accent-soft); }
     50% { box-shadow: 0 0 35px rgba(0,212,255,0.7); }
@@ -217,10 +193,6 @@ section.glass p strong {
 
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
-    .cert-grid {
-        grid-template-columns: 1fr;
-    }
-
     #contactForm {
         grid-template-columns: 1fr;
     }
