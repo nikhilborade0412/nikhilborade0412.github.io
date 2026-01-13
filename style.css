@@ -287,6 +287,43 @@ body.light .contact-item {
     color: var(--text-light);
 }
 
+/* ================= CERTIFICATES ================= */
+.certificates {
+    list-style: none;
+    padding-left: 0;
+}
+
+.certificates li {
+    margin-bottom: 18px;
+    padding-left: 22px;
+    position: relative;
+}
+
+.certificates li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: bold;
+}
+
+.certificates span {
+    opacity: 0.85;
+    font-size: 0.95rem;
+}
+
+.cert-link {
+    display: inline-block;
+    margin-top: 6px;
+    color: var(--accent);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.cert-link:hover {
+    text-decoration: underline;
+}
+    
 /* About Me formatting */
 section.glass p strong {
     color: var(--accent);
