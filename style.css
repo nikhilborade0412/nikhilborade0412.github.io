@@ -203,5 +203,7 @@ footer {
     text-align: center;
     padding: 20px 0;
     opacity: 0.85;
+    border-top: 1px solid rgba(255,255,255,0.15);
 }
+
 
