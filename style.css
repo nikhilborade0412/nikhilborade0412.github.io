@@ -160,23 +160,18 @@ header {
 }
 
 /* ================= CONTACT INFO ================= */
-.contact-list {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
+#contactForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    max-width: 700px;
 }
 
-.contact-item {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    font-size: 1.05rem;
+#contactForm textarea,
+#contactForm button {
+    grid-column: 1 / -1;
 }
 
-.contact-item .icon {
-    color: var(--accent);
-    font-size: 1.3rem;
-}
 
 /* ================= CERTIFICATES (2 PER ROW) ================= */
 .cert-grid {
