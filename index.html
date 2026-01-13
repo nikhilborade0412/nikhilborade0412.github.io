@@ -11,7 +11,12 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 </head>
 
 <body>
@@ -29,7 +34,7 @@
     <div class="links">
         <a href="mailto:nikhilsborade3@gmail.com">Email</a>
         <a href="tel:9421512632">Call</a>
-        <a href="https://linkedin.com/in/nikhil-borade0412/" target="_blank">LinkedIn</a>
+        <a href="https://linkedin.com/in/nikhil-borade0412" target="_blank">LinkedIn</a>
         <a href="https://github.com/nikhilborade0412" target="_blank">GitHub</a>
     </div>
 
@@ -78,8 +83,8 @@
 <!-- ================= PROJECTS ================= -->
 <section class="glass">
     <h2>Projects</h2>
-    <div class="projects">
 
+    <div class="projects">
         <div class="card">
             <img src="images/travel.png">
             <h3>Travel Package Purchase Prediction</h3>
@@ -97,7 +102,7 @@
         <div class="card">
             <img src="images/churn.png">
             <h3>Customer Churn Prediction (KNN)</h3>
-            <p>KNN-based churn prediction with preprocessing and evaluation.</p>
+            <p>KNN-based churn prediction with preprocessing.</p>
             <a href="https://github.com/nikhilborade0412/KNN-Classification-Telco-Customer-Churn-Prediction" target="_blank">View Project</a>
         </div>
 
@@ -128,49 +133,40 @@
             <p>SQL database design and reporting.</p>
             <a href="https://github.com/nikhilborade0412/Library-Management-System-SQL" target="_blank">View Project</a>
         </div>
-
     </div>
 </section>
 
-<!-- ================= CERTIFICATES ================= -->
+<!-- ================= CERTIFICATES (PROJECT STYLE) ================= -->
 <section class="glass">
     <h2>Certifications</h2>
 
-    <div class="cert-grid">
-        <div class="cert-card">
+    <div class="projects">
+        <div class="card">
             <img src="images/Python_Programming.png">
-            <h4>Python Programming</h4>
+            <h3>Python Programming</h3>
             <p>Innomatics Research Labs</p>
-              <a href="certificates/Python_Programming.pdf" target="_blank" class="cert-link">
-                View Certificate
-            </a>
+            <a href="certificates/Python_Programming.pdf" target="_blank">View Certificate</a>
         </div>
 
-        <div class="cert-card">
+        <div class="card">
             <img src="images/MySQL.png">
-            <h4>MySQL for Data Analytics</h4>
+            <h3>MySQL for Data Analytics</h3>
             <p>Innomatics Research Labs</p>
-            <a href="certificates/MySQL.pdf" target="_blank" class="cert-link">
-                View Certificate
-            </a>
+            <a href="certificates/MySQL.pdf" target="_blank">View Certificate</a>
         </div>
 
-        <div class="cert-card">
+        <div class="card">
             <img src="images/Power_BI.png">
-            <h4>Power BI & Data Visualization</h4>
+            <h3>Power BI & Data Visualization</h3>
             <p>Innomatics Research Labs</p>
-            <a href="certificates/Power_BI.pdf" target="_blank" class="cert-link">
-                View Certificate
-            </a>
+            <a href="certificates/Power_BI.pdf" target="_blank">View Certificate</a>
         </div>
 
-        <div class="cert-card">
+        <div class="card">
             <img src="images/Machine_Learning.png">
-            <h4>Machine Learning</h4>
+            <h3>Machine Learning</h3>
             <p>Innomatics Research Labs</p>
-             <a href="certificates/Machine_Learning.pdf" target="_blank" class="cert-link">
-                View Certificate
-            </a>
+            <a href="certificates/Machine_Learning.pdf" target="_blank">View Certificate</a>
         </div>
     </div>
 </section>
@@ -180,22 +176,8 @@
     <h2>Contact Me</h2>
 
     <form id="contactForm">
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
-        <textarea placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
-    </form>
-    <p id="statusMsg"></p>
-</section>
-
-<!-- ================= CONTACT INFO ================= -->
-<!-- ================= CONTACT ================= -->
-<section class="glass">
-    <h2>Contact Me</h2>
-
-    <form id="contactForm">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="text" name="from_name" placeholder="Your Name" required>
+        <input type="email" name="from_email" placeholder="Your Email" required>
         <textarea name="message" placeholder="Your Message" required></textarea>
         <button type="submit">Send Message</button>
     </form>
@@ -203,8 +185,19 @@
     <p id="statusMsg"></p>
 </section>
 
+<!-- ================= CONTACT INFO ================= -->
+<section class="glass contact-info">
+    <h2>Contact Info</h2>
+
+    <div class="contact-list">
+        <div class="contact-item"><span class="icon">✉️</span> nikhhilsborade3@gmail.com</div>
+        <div class="contact-item"><span class="icon">📞</span> +91 9421512632</div>
+        <div class="contact-item"><span class="icon">🌍</span> Pune, Maharashtra, India</div>
+    </div>
+</section>
+
 <footer>
-    <p>© Nikhil Borade | Gen AI • ML • AI</p>
+    <p>© 2026 Nikhil Borade | Gen AI • ML • AI</p>
 </footer>
 
 <script src="script.js"></script>
