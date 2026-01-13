@@ -197,3 +197,11 @@ section.glass p strong {
         grid-template-columns: 1fr;
     }
 }
+
+/* ================= FOOTER ================= */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    opacity: 0.85;
+}
+
