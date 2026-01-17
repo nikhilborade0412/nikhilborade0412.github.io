@@ -19,7 +19,6 @@ body {
     transition: background 0.4s ease, color 0.4s ease;
 }
 
-/* LIGHT MODE */
 body.light {
     background: var(--bg-light);
     color: var(--text-light);
@@ -34,7 +33,6 @@ body.light {
     margin-bottom: 30px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.25);
 
-    /* Scroll animation setup */
     opacity: 0;
     transform: translateY(40px);
     transition: opacity 0.8s ease, transform 0.8s ease;
@@ -49,12 +47,18 @@ body.light .glass {
     background: var(--glass-light);
 }
 
+/* ================= HEADINGS ================= */
+section.glass h2 {
+    margin-bottom: 18px;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
 /* ================= HEADER ================= */
 header {
     text-align: center;
 }
 
-/* PROFILE IMAGE */
 .profile-img {
     width: 145px;
     height: 145px;
@@ -116,32 +120,58 @@ header {
     font-weight: 600;
 }
 
-.edu-university {
+.edu-university { opacity: 0.9; }
+.edu-duration,
+.edu-grade { font-size: 0.9rem; opacity: 0.7; }
+
+/* ================= SKILLS ================= */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    margin-top: 30px;
+}
+
+.skill-card {
+    background: rgba(255,255,255,0.15);
+    border-radius: 18px;
+    padding: 24px 22px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.skill-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+body.light .skill-card {
+    background: rgba(255,255,255,0.9);
+}
+
+.skill-card h3 {
+    margin: 0 0 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.skill-card p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
     opacity: 0.9;
 }
 
-.edu-duration,
-.edu-grade {
-    font-size: 0.9rem;
-    opacity: 0.7;
+.skill-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 40px rgba(0,212,255,0.35);
 }
 
-/* ================= SKILLS ================= */
-.skills span {
-    display: inline-block;
-    background: rgba(255,255,255,0.18);
-    padding: 8px 16px;
-    border-radius: 25px;
-    margin: 6px;
-    transition: transform 0.3s ease, background 0.3s ease;
-}
-
-.skills span:hover {
-    background: var(--accent-soft);
-    transform: translateY(-4px);
-}
-
-/* ================= PROJECTS & CERTIFICATES ================= */
+/* ================= PROJECTS ================= */
 .projects {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -153,6 +183,14 @@ header {
     padding: 15px;
     border-radius: 18px;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .card img {
@@ -165,22 +203,21 @@ header {
     transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0,212,255,0.4);
 }
-/* ================= CONTACT FORM  ================= */
+
+/* ================= CONTACT FORM ================= */
 #contactForm {
     max-width: 650px;
-    margin: 20px auto 0;   /* center horizontally */
+    margin: 20px auto 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 18px;
 }
 
-/* Full width rows */
 #contactForm textarea,
 #contactForm button {
     grid-column: 1 / -1;
 }
 
-/* Inputs & textarea */
 #contactForm input,
 #contactForm textarea {
     padding: 14px 16px;
@@ -193,19 +230,17 @@ header {
     transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
-/* Focus effect */
 #contactForm input:focus,
 #contactForm textarea:focus {
     box-shadow: 0 0 0 2px var(--accent-soft);
+    transform: scale(1.01);
 }
 
-/* Textarea height */
 #contactForm textarea {
     resize: none;
     min-height: 120px;
 }
 
-/* Button */
 #contactForm button {
     background: linear-gradient(135deg, #00d4ff, #008cff);
     color: #000;
@@ -218,22 +253,54 @@ header {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Button hover */
 #contactForm button:hover {
     transform: translateY(-2px);
     box-shadow: 0 12px 28px rgba(0,212,255,0.45);
 }
 
-/* Status message */
 #statusMsg {
     text-align: center;
     margin-top: 14px;
     font-weight: 500;
 }
 
-/* ================= ABOUT TEXT ================= */
-section.glass p strong {
+/* ================= CONTACT INFO ================= */
+.contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.contact-item { font-size: 0.95rem; opacity: 0.9; }
+
+/* ================= SOCIAL LINKS ================= */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.social-links a {
+    padding: 10px 20px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, rgba(0,212,255,0.25), rgba(0,140,255,0.25));
     color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.social-links a:hover {
+    background: linear-gradient(135deg, #00d4ff, #008cff);
+    color: #000;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,212,255,0.45);
 }
 
 /* ================= ANIMATIONS ================= */
@@ -245,9 +312,8 @@ section.glass p strong {
 
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
-    #contactForm {
-        grid-template-columns: 1fr;
-    }
+    body { padding: 20px; }
+    #contactForm { grid-template-columns: 1fr; }
 }
 
 /* ================= FOOTER ================= */
@@ -258,4 +324,42 @@ footer {
     border-top: 1px solid rgba(255,255,255,0.15);
 }
 
+/* ================= ACCESSIBILITY ================= */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
 
+/* ================= NAME (CLEAN BLUE – NO GLOW) ================= */
+.led-name {
+    color: #2563EB;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+#typewriter::after {
+    content: "|";
+    margin-left: 4px;
+    color: #2563EB;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
+}
+
+/* ================= ABOUT SECTION LABELS ================= */
+section.glass p strong {
+    color: #2563EB;   /* clean professional blue */
+    font-weight: 600;
+}
+section.glass p {
+    line-height: 1.7;
+}
+section.glass p strong {
+    color: #2563EB;
+    font-weight: 600;
+}
