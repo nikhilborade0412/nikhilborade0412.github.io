@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* ================= THEME TOGGLE ================= */
     const toggle = document.getElementById("themeToggle");
-
+ 
     if (toggle) {
         if (window.matchMedia("(prefers-color-scheme: light)").matches) {
             document.body.classList.add("light");
