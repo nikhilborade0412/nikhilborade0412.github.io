@@ -365,68 +365,65 @@ section.glass p strong {
 }
 
 
-/* ================= NAVBAR ================= */
-.navbar {
+/* ================= SIMPLE TOP NAVBAR ================= */
+.top-navbar {
+    width: 100%;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
     position: sticky;
     top: 0;
     z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 18px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 14px 30px;
-    margin-bottom: 30px;
-    backdrop-filter: blur(12px);
 }
 
 /* Logo */
 .nav-logo {
-    font-size: 20px;
+    font-size: 26px;
     font-weight: 700;
-    letter-spacing: 1px;
+    color: #2563eb; /* Blue like screenshot */
 }
 
-/* Links */
-.nav-links {
+/* Menu */
+.nav-menu {
     list-style: none;
     display: flex;
-    gap: 22px;
-    padding: 0;
+    gap: 28px;
     margin: 0;
+    padding: 0;
 }
 
-.nav-links a {
+.nav-menu li a {
     text-decoration: none;
+    font-size: 18px;
     font-weight: 500;
-    color: inherit;
-    transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-    color: var(--accent);
-}
-
-/* Resume Button */
-.nav-btn {
-    padding: 8px 16px;
-    border-radius: 20px;
-    background: var(--accent);
     color: #000;
-    font-weight: 600;
-    text-decoration: none;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: color 0.2s ease;
 }
 
-.nav-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 12px var(--accent-soft);
+.nav-menu li a:hover {
+    color: #2563eb;
+}
+
+/* Smooth scroll */
+html {
+    scroll-behavior: smooth;
 }
 
 /* Responsive */
-@media (max-width: 900px) {
-    .nav-links {
+@media (max-width: 768px) {
+    .nav-menu {
         display: none;
     }
 }
+
 html {
     scroll-behavior: smooth;
 }
