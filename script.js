@@ -31,10 +31,11 @@ document.addEventListener("DOMContentLoaded", () => {
         { threshold: 0.15 }
     );
 
-    document.querySelectorAll(".glass, .skill-card, .card")
+    document
+        .querySelectorAll(".glass, .skill-card, .card")
         .forEach(el => observer.observe(el));
 
-    /* ================= TYPEWRITER NAME ANIMATION ================= */
+    /* ================= TYPEWRITER NAME ================= */
     const typeTarget = document.getElementById("typewriter");
     const nameText = "Nikhil Borade";
     let index = 0;
@@ -49,16 +50,29 @@ document.addEventListener("DOMContentLoaded", () => {
         if (index < nameText.length) {
             typeTarget.textContent += nameText.charAt(index);
             index++;
-            setTimeout(typeName, 250); // ⏱ 250ms per letter
+            setTimeout(typeName, 250);
         } else {
             setTimeout(() => {
                 index = 0;
                 typeName();
-            }, 500); // pause before restart
+            }, 500);
         }
     }
 
     typeName();
+
+    /* ================= NAVBAR LOGO → TOP ================= */
+    const logo = document.querySelector(".nav-logo");
+
+    if (logo) {
+        logo.addEventListener("click", function (e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    }
 
     /* ================= EMAILJS ================= */
     if (typeof emailjs === "undefined") {
@@ -66,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    emailjs.init("nU75PecxW6K6vssR8"); // ✅ PUBLIC KEY
+    emailjs.init("nU75PecxW6K6vssR8"); // ✅ Public key
 
     const form = document.getElementById("contactForm");
     const statusMsg = document.getElementById("statusMsg");
@@ -83,8 +97,8 @@ document.addEventListener("DOMContentLoaded", () => {
         statusMsg.textContent = "⏳ Sending message...";
 
         emailjs.sendForm(
-            "service_vma8vc6",    // ✅ Gmail service ID
-            "template_odou3q9",  // ✅ Correct template ID
+            "service_vma8vc6",
+            "template_odou3q9",
             this
         )
         .then(() => {
