@@ -364,18 +364,17 @@ section.glass p strong {
     font-weight: 600;
 }
 
-
-/* ================= SIMPLE TOP NAVBAR ================= */
-.top-navbar {
+/* ===== CLEAN TOP NAVBAR (FORCED FIX) ===== */
+.simple-navbar {
+    position: sticky;
+    top: 0;
     width: 100%;
     background: #ffffff;
     border-bottom: 1px solid #e5e7eb;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    z-index: 9999;
 }
 
-.nav-container {
+.nav-inner {
     max-width: 1200px;
     margin: auto;
     padding: 18px 24px;
@@ -388,41 +387,41 @@ section.glass p strong {
 .nav-logo {
     font-size: 26px;
     font-weight: 700;
-    color: #2563eb; /* Blue like screenshot */
+    color: #2563eb;
 }
 
-/* Menu */
-.nav-menu {
-    list-style: none;
+/* Links */
+.nav-links {
     display: flex;
     gap: 28px;
-    margin: 0;
-    padding: 0;
 }
 
-.nav-menu li a {
+.nav-links a {
     text-decoration: none;
     font-size: 18px;
     font-weight: 500;
     color: #000;
-    transition: color 0.2s ease;
 }
 
-.nav-menu li a:hover {
+.nav-links a:hover {
     color: #2563eb;
 }
 
-/* Smooth scroll */
-html {
-    scroll-behavior: smooth;
+/* Kill global list styles if any */
+.simple-navbar ul,
+.simple-navbar li {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
-/* Responsive */
+/* Mobile */
 @media (max-width: 768px) {
-    .nav-menu {
+    .nav-links {
         display: none;
     }
 }
+
 
 html {
     scroll-behavior: smooth;
