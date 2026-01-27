@@ -28,65 +28,51 @@ html {
     scroll-behavior: smooth;
 }
 
-/* ================= NAVBAR ================= */
+/* ================= NAVBAR HARD FIX ================= */
+
+/* Remove body padding effect from navbar */
 .simple-navbar {
     position: sticky;
     top: 0;
-    width: 100vw;
+    left: 0;
+    width: 100%;
+    margin-left: -40px;
+    margin-right: -40px;
+    padding-left: 40px;
+    padding-right: 40px;
     z-index: 9999;
 }
 
-/* Navbar inner container */
+/* Inner layout */
 .nav-inner {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 18px 32px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-/* Logo */
-.nav-logo {
-    font-size: 26px;
-    font-weight: 700;
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
-}
-
-/* Links */
+/* Force links in one line */
 .nav-links {
     display: flex;
     gap: 28px;
+    white-space: nowrap;
 }
 
-.nav-links a {
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 500;
-    color: inherit;
-}
-
-.nav-links a:hover {
-    color: #2563eb;
-}
-
-/* LIGHT THEME NAVBAR */
+/* Theme sync */
 body.light .simple-navbar {
     background: #ffffff;
     border-bottom: 1px solid #e5e7eb;
 }
 
-body.light .nav-logo,
-body.light .nav-links a {
-    color: #0b1d2a;
-}
-
-/* DARK THEME NAVBAR */
 body:not(.light) .simple-navbar {
     background: #0b1d2a;
     border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+body.light .nav-logo,
+body.light .nav-links a {
+    color: #0b1d2a;
 }
 
 body:not(.light) .nav-logo,
