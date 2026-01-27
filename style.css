@@ -363,3 +363,70 @@ section.glass p strong {
     color: #2563EB;
     font-weight: 600;
 }
+
+
+/* ================= NAVBAR ================= */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 30px;
+    margin-bottom: 30px;
+    backdrop-filter: blur(12px);
+}
+
+/* Logo */
+.nav-logo {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 22px;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-weight: 500;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+/* Resume Button */
+.nav-btn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: var(--accent);
+    color: #000;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 12px var(--accent-soft);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .nav-links {
+        display: none;
+    }
+}
+html {
+    scroll-behavior: smooth;
+}
