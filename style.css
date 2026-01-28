@@ -23,19 +23,19 @@ body.light {
     background: var(--bg-light);
     color: var(--text-light);
 }
+/* ================= NAVBAR HARD FIX (CORRECTED) ================= */
 
-/* ================= NAVBAR HARD FIX ================= */
-
-/* Remove body padding effect from navbar */
 .simple-navbar {
     position: sticky;
     top: 0;
     left: 0;
-    width: 100%;
+
+    /* cancel body padding cleanly */
+    width: calc(100% + 80px);
     margin-left: -40px;
-    margin-right: -40px;
-    padding-left: 40px;
-    padding-right: 40px;
+
+    padding: 18px 40px;
+
     z-index: 9999;
 }
 
@@ -43,16 +43,31 @@ body.light {
 .nav-inner {
     max-width: 1200px;
     margin: 0 auto;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-/* Force links in one line */
+/* Logo */
+.nav-logo {
+    font-size: 26px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* Links in one straight line */
 .nav-links {
     display: flex;
     gap: 28px;
+    align-items: center;
     white-space: nowrap;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
 }
 
 /* Theme sync */
