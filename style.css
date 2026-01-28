@@ -506,7 +506,7 @@ body:not(.light) #themeToggle {
 
     /* Push hero content below navbar */
     header.glass {
-        margin-top: 110px;   /* KEY FIX */
+        margin-top: 150px;   /* KEY FIX */
         padding-top: 30px;
     }
 
