@@ -21,6 +21,15 @@
 
 <body>
 
+<!-- ================= RESUME MODAL ================= -->
+<div id="resumeModal" class="resume-modal">
+  <div class="resume-modal-content">
+    <span class="resume-close" id="closeResume">&times;</span>
+    <iframe src="resume.pdf"></iframe>
+  </div>
+</div>
+
+
 <!-- ================= NAVBAR ================= -->    
 <header class="header">
   <div class="nav-container">
@@ -44,6 +53,7 @@
 </header>
 
 
+
 <!-- ================= HEADER ================= -->
 <header class="glass">
     <img src="images/nikhil.jpg" alt="Nikhil Borade" class="profile-img">
@@ -59,10 +69,11 @@
         <a href="https://github.com/nikhilborade0412" target="_blank">GitHub</a>
     </div>
 
-    <div style="display:flex; gap:15px; justify-content:center; flex-wrap:wrap;">
+    <div class="resume-buttons">
         <a class="btn" href="resume.pdf" download>Download Resume</a>
-        <a class="btn" href="resume.pdf" target="_blank">View My Resume</a>
+        <a class="btn" id="viewResumeBtn">View My Resume</a>
     </div>
+
 </header>
 
 <!-- ================= ABOUT ================= -->
