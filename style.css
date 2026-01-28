@@ -51,8 +51,7 @@ body:not(.light) .header {
 .nav-container {
     max-width: 1000px;
     margin: auto;
-    padding: 16px 24px;
-
+    padding: 10px 24px;   /* ⬅ reduced height */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -467,3 +466,38 @@ section.glass p strong {
     color: #2563EB;
     font-weight: 600;
 }
+
+/* ================= THEME TOGGLE FIX ================= */
+
+#themeToggle {
+    position: fixed;
+    top: 14px;              /* slightly adjusted for new navbar height */
+    left: 20px;
+
+    background: #ffffff;
+    border: 2px solid #2563EB;   /* 🔵 blue border added */
+    border-radius: 10px;
+
+    padding: 6px 10px;
+    font-size: 18px;
+    cursor: pointer;
+
+    z-index: 3000;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Dark theme */
+body:not(.light) #themeToggle {
+    background: #020617;
+    color: #ffffff;
+    border-color: #2563EB;   /* keep blue border in dark */
+}
+
+/* Hover effect */
+#themeToggle:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 20px rgba(37,99,235,0.35);
+}
+
