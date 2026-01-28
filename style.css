@@ -25,82 +25,92 @@ body.light {
 }
 
 
-/* ===== NAVBAR (DESKTOP FIRST, CORRECT) ===== */
+/* ================= NAVBAR (FINAL & CORRECT) ================= */
 
 .header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: #ffffff;
-  border-bottom: 1px solid #eee;
-  z-index: 1000;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* Light theme */
+body.light .header {
+    background: #ffffff;
+    border-bottom: 1px solid #eee;
+}
+
+/* Dark theme */
+body:not(.light) .header {
+    background: #020617;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
 }
 
 .nav-container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 16px 24px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 16px 24px;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-/* LOGO */
+/* Logo */
 .nav-logo {
-  color: #2563EB;
-  font-size: 22px;
-  font-weight: 600;
-  text-decoration: none;
-  white-space: nowrap;
+    color: #2563EB;
+    font-size: 22px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
 }
 
-/* LINKS */
+/* Links */
 .nav-links {
-  list-style: none;
-  display: flex;
-  gap: 25px;
+    list-style: none;
+    display: flex;
+    gap: 25px;
 }
 
 .nav-links li {
-  list-style: none;
+    list-style: none;
 }
 
 .nav-links a {
-  text-decoration: none;
-  color: #111827;
-  font-weight: 500;
-  position: relative;
+    text-decoration: none;
+    font-weight: 500;
+    color: inherit;
+    position: relative;
 }
 
-/* underline hover */
+/* Hover underline */
 .nav-links a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -5px;
-  width: 0%;
-  height: 2px;
-  background: #2563EB;
-  transition: width 0.3s ease;
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0%;
+    height: 2px;
+    background: #2563EB;
+    transition: width 0.3s ease;
 }
 
 .nav-links a:hover::after {
-  width: 100%;
+    width: 100%;
 }
 
-/* DARK MODE */
-body.dark .header {
-  background: #020617;
-  border-bottom: 1px solid rgba(255,255,255,0.12);
-}
+/* Mobile */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 12px;
+    }
 
-body.dark .nav-links a {
-  color: #e5e7eb;
-}
-
-body.dark .nav-logo {
-  color: #60a5fa;
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+    }
 }
 
 
