@@ -32,7 +32,7 @@ body.light {
     left: 0;
 
     /* balanced width correction */
-    width: calc(100% + 60px);
+    width: calc(90% + 80px);
     margin-left: -30px;
 
     padding: 12px 40px;
