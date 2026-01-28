@@ -23,7 +23,7 @@ body.light {
     background: var(--bg-light);
     color: var(--text-light);
 }
-/* ================= NAVBAR HARD FIX (CORRECTED) ================= */
+/* ================= NAVBAR HARD FIX (SIZE TUNED) ================= */
 
 .simple-navbar {
     position: sticky;
@@ -31,10 +31,11 @@ body.light {
     left: 0;
 
     /* cancel body padding cleanly */
-    width: calc(100% + 80px);
+   width: calc(100% + 80px);
     margin-left: -40px;
 
-    padding: 18px 40px;
+    /* ⬇ reduced height */
+    padding: 12px 40px;
 
     z-index: 9999;
 }
@@ -49,46 +50,25 @@ body.light {
     justify-content: space-between;
 }
 
-/* Logo */
+/* ⬇ slightly smaller logo */
 .nav-logo {
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 700;
     text-decoration: none;
 }
 
-/* Links in one straight line */
+/* Links */
 .nav-links {
     display: flex;
-    gap: 28px;
+    gap: 22px;              /* ⬇ tighter spacing */
     align-items: center;
     white-space: nowrap;
 }
 
 .nav-links a {
     text-decoration: none;
-    font-size: 18px;
+    font-size: 16px;        /* ⬇ smaller text */
     font-weight: 500;
-}
-
-/* Theme sync */
-body.light .simple-navbar {
-    background: #ffffff;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-body:not(.light) .simple-navbar {
-    background: #0b1d2a;
-    border-bottom: 1px solid rgba(255,255,255,0.15);
-}
-
-body.light .nav-logo,
-body.light .nav-links a {
-    color: #0b1d2a;
-}
-
-body:not(.light) .nav-logo,
-body:not(.light) .nav-links a {
-    color: #ffffff;
 }
 
 
