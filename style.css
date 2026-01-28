@@ -25,75 +25,40 @@ body.light {
 }
 
 
+/* ================= NAVBAR THEME SYNC ================= */
 
-/* ================= NAVBAR HARD FIX (FINAL & CORRECT) ================= */
-
-.simple-navbar {
-    position: sticky;
-    top: 0;
-    left: 0;
-
-    /* correct & stable width handling */
-    width: calc(100% + 60px);
-    margin-left: -30px;
-
-    padding: 12px 40px;
-    z-index: 9999;
-}
-
-/* Inner layout */
-.nav-inner {
-    max-width: 1000px;
-    margin: 0 auto;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-/* Logo */
-.nav-logo {
-    font-size: 22px;
-    font-weight: 600;
-    text-decoration: none;
-    white-space: nowrap;
-}
-
-/* Links */
-.nav-links {
-    display: flex;
-    gap: 22px;
-    align-items: center;
-    white-space: nowrap;
-}
-
-.nav-links a {
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 500;
-}
-
-/* Theme sync */
-body.light .simple-navbar {
+/* LIGHT MODE (default) */
+body:not(.dark) .simple-navbar {
     background: #ffffff;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid #eee;
 }
 
-body:not(.light) .simple-navbar {
-    background: #0b1d2a;
-    border-bottom: 1px solid rgba(255,255,255,0.15);
+body:not(.dark) .nav-logo {
+    color: #2563eb;
 }
 
-body.light .nav-logo,
-body.light .nav-links a {
-    color: #0b1d2a;
+body:not(.dark) .nav-links a {
+    color: #111827;
 }
 
-body:not(.light) .nav-logo,
-body:not(.light) .nav-links a {
-    color: #ffffff;
+/* DARK MODE */
+body.dark .simple-navbar {
+    background: #020617;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
 }
 
+body.dark .nav-logo {
+    color: #60a5fa;
+}
+
+body.dark .nav-links a {
+    color: #e5e7eb;
+}
+
+/* Hover underline stays same */
+.nav-links a::after {
+    background: #2563eb;
+}
 
 
 /* ================= GLASS ================= */
