@@ -30,11 +30,9 @@ body.light {
 .header {
     position: fixed;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);   /* center the 90% navbar */
-    width: 100%;
+    left: 0;
+    width: 100%;          /* FULL SCREEN WIDTH */
     z-index: 1000;
-    border-radius: 0 0 16px 16px;  /* optional: smooth bottom edges */
 }
 
 /* Light theme */
