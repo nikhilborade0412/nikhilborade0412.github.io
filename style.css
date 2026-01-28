@@ -30,7 +30,7 @@ body.light {
 .header {
     position: fixed;
     top: 0;
-    width: 100%;
+    width: 90%;
     z-index: 1000;
 }
 
@@ -47,7 +47,7 @@ body:not(.light) .header {
 }
 
 .nav-container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: auto;
     padding: 16px 24px;
 
