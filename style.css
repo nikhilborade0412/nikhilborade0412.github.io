@@ -124,6 +124,10 @@ body:not(.light) .header {
     }
 }
 
+main {
+    padding-top: 90px; /* navbar height */
+}
+
 
 
 /* ================= GLASS ================= */
