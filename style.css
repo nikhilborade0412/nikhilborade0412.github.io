@@ -106,7 +106,7 @@ body:not(.light) .header {
 @media (max-width: 768px) {
 
     .header {
-        width: 100%;
+        width: 94%;
     }
 
     .nav-container {
@@ -200,13 +200,14 @@ header {
 /* ================= BUTTON ================= */
 .btn {
     display: inline-block;
-    margin-top: 15px;
     padding: 12px 26px;
     background: linear-gradient(135deg, #00d4ff, #008cff);
     color: #000;
     border-radius: 30px;
     text-decoration: none;
     font-weight: 600;
+    border: none;                 /* 🔥 removes mismatch */
+    outline: none;
     box-shadow: 0 8px 20px rgba(0,212,255,0.4);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -215,6 +216,7 @@ header {
     transform: translateY(-3px);
     box-shadow: 0 12px 30px rgba(0,212,255,0.6);
 }
+
 
 /* ================= EDUCATION ================= */
 .education h3 {
@@ -506,9 +508,62 @@ body:not(.light) #themeToggle {
 
     /* Push hero content below navbar */
     header.glass {
-        margin-top: 130px;   /* KEY FIX */
+        margin-top: 110px;   /* KEY FIX */
         padding-top: 30px;
     }
 
 }
 
+/* ================= RESUME MODAL ================= */
+.resume-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 9999;
+}
+
+.resume-modal-content {
+  position: relative;
+  width: 90%;
+  height: 90%;
+  margin: 4% auto;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.resume-modal-content iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Close button */
+.resume-close {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  font-size: 26px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #111827;
+  z-index: 10;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .resume-modal-content {
+    width: 96%;
+    height: 92%;
+    margin: 4% auto;
+  }
+}
+
+.resume-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;          /* 👈 spacing between buttons */
+    flex-wrap: wrap;   /* mobile friendly */
+    margin-top: 15px;
+}
