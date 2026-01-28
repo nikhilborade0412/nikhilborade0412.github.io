@@ -113,3 +113,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+const viewResumeBtn = document.getElementById("viewResumeBtn");
+const resumeModal = document.getElementById("resumeModal");
+const closeResume = document.getElementById("closeResume");
+
+viewResumeBtn.addEventListener("click", () => {
+  resumeModal.style.display = "block";
+});
+
+closeResume.addEventListener("click", () => {
+  resumeModal.style.display = "none";
+});
+
+window.addEventListener("click", (e) => {
+  if (e.target === resumeModal) {
+    resumeModal.style.display = "none";
+  }
+});
