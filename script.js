@@ -31,11 +31,10 @@ document.addEventListener("DOMContentLoaded", () => {
         { threshold: 0.15 }
     );
 
-    document
-        .querySelectorAll(".glass, .skill-card, .card")
+    document.querySelectorAll(".glass, .skill-card, .card")
         .forEach(el => observer.observe(el));
 
-    /* ================= TYPEWRITER NAME ================= */
+    /* ================= TYPEWRITER NAME ANIMATION ================= */
     const typeTarget = document.getElementById("typewriter");
     const nameText = "Nikhil Borade";
     let index = 0;
@@ -50,12 +49,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (index < nameText.length) {
             typeTarget.textContent += nameText.charAt(index);
             index++;
-            setTimeout(typeName, 250);
+            setTimeout(typeName, 250); // ⏱ 250ms per letter
         } else {
             setTimeout(() => {
                 index = 0;
                 typeName();
-            }, 500);
+            }, 500); // pause before restart
         }
     }
 
@@ -80,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    emailjs.init("nU75PecxW6K6vssR8"); // ✅ Public key
+    emailjs.init("nU75PecxW6K6vssR8"); // ✅ PUBLIC KEY
 
     const form = document.getElementById("contactForm");
     const statusMsg = document.getElementById("statusMsg");
@@ -97,8 +96,8 @@ document.addEventListener("DOMContentLoaded", () => {
         statusMsg.textContent = "⏳ Sending message...";
 
         emailjs.sendForm(
-            "service_vma8vc6",
-            "template_odou3q9",
+            "service_vma8vc6",    // ✅ Gmail service ID
+            "template_odou3q9",  // ✅ Correct template ID
             this
         )
         .then(() => {
