@@ -106,7 +106,7 @@ body:not(.light) .header {
 @media (max-width: 768px) {
 
     .header {
-        width: 94%;
+        width: 100%;
     }
 
     .nav-container {
