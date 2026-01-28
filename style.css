@@ -32,7 +32,7 @@ body.light {
 
     /* cancel body padding cleanly */
    width: calc(100% + 80px);
-    margin-left: -40px;
+    margin-left: -30px;
 
     /* ⬇ reduced height */
     padding: 12px 40px;
