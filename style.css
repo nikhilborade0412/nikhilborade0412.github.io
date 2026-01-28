@@ -42,7 +42,7 @@ body.light {
 
 /* Inner layout */
 .nav-inner {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
 
     display: flex;
