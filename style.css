@@ -30,14 +30,17 @@ body.light {
 .header {
     position: fixed;
     top: 0;
+    left: 50%;
+    transform: translateX(-50%);   /* center the 90% navbar */
     width: 90%;
     z-index: 1000;
+    border-radius: 0 0 16px 16px;  /* optional: smooth bottom edges */
 }
 
 /* Light theme */
 body.light .header {
     background: #ffffff;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #e5e7eb;
 }
 
 /* Dark theme */
@@ -46,6 +49,7 @@ body:not(.light) .header {
     border-bottom: 1px solid rgba(255,255,255,0.12);
 }
 
+/* Inner container */
 .nav-container {
     max-width: 1000px;
     margin: auto;
@@ -70,6 +74,8 @@ body:not(.light) .header {
     list-style: none;
     display: flex;
     gap: 25px;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links li {
@@ -99,8 +105,13 @@ body:not(.light) .header {
     width: 100%;
 }
 
-/* Mobile */
+/* ================= MOBILE ================= */
 @media (max-width: 768px) {
+
+    .header {
+        width: 94%;
+    }
+
     .nav-container {
         flex-direction: column;
         gap: 12px;
@@ -112,6 +123,7 @@ body:not(.light) .header {
         gap: 16px;
     }
 }
+
 
 
 /* ================= GLASS ================= */
