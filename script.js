@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; });
   (function animCursor() {
     rx += (mx - rx) * 0.14;
-    ry += (my - ry) * 0.14;
+    ry += (my - ry) * 0.14; 
     if (dot)  { dot.style.left  = mx + "px"; dot.style.top  = my + "px"; }
     if (ring) { ring.style.left = rx + "px"; ring.style.top = ry + "px"; }
     requestAnimationFrame(animCursor);
