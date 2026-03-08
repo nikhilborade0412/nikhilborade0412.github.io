@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; });
   (function animCursor() {
     rx += (mx - rx) * 0.14;
-    ry += (my - ry) * 0.14; 
+    ry += (my - ry) * 0.14;
     if (dot)  { dot.style.left  = mx + "px"; dot.style.top  = my + "px"; }
     if (ring) { ring.style.left = rx + "px"; ring.style.top = ry + "px"; }
     requestAnimationFrame(animCursor);
@@ -104,12 +104,24 @@ document.addEventListener("DOMContentLoaded", () => {
         obs.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0, rootMargin: "0px 0px -40px 0px" });
 
   document.querySelectorAll(".reveal").forEach((el, i) => {
     el.style.transitionDelay = (i % 6) * 0.08 + "s";
     revealObs.observe(el);
   });
+
+  // Force-show anything already visible on load (GitHub Pages / hash navigation)
+  function forceRevealVisible() {
+    document.querySelectorAll(".reveal:not(.in-view)").forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add("in-view");
+      }
+    });
+  }
+  forceRevealVisible();
+  setTimeout(forceRevealVisible, 300);
 
   /* ===== SKILL BARS (triggered on scroll) ===== */
   const skillObs = new IntersectionObserver((entries, obs) => {
@@ -119,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
         obs.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.3 });
+  }, { threshold: 0, rootMargin: "0px 0px -20px 0px" });
 
   document.querySelectorAll(".skill-card").forEach(card => skillObs.observe(card));
 
@@ -191,8 +203,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* ===== STAGGER HERO REVEALS ===== */
+  /* ===== STAGGER HERO REVEALS — show immediately on load ===== */
   document.querySelectorAll(".hero .reveal").forEach((el, i) => {
     el.style.transitionDelay = i * 0.12 + "s";
+    setTimeout(() => el.classList.add("in-view"), i * 120 + 50);
   });
 });
