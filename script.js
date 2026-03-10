@@ -1,211 +1,225 @@
 /* ============================================================
-   NIKHIL BORADE — Portfolio Script  (matches new HTML exactly)
+   NIKHIL BORADE — Portfolio Script
    ============================================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ===== CUSTOM CURSOR ===== */
-  const dot  = document.querySelector(".cursor-dot");
-  const ring = document.querySelector(".cursor-ring");
-  let mx = 0, my = 0, rx = 0, ry = 0;
+  /* ===== PARTICLE NETWORK CANVAS ===== */
+  const canvas = document.getElementById("particleCanvas");
+  const ctx    = canvas.getContext("2d");
+  let W, H, particles = [], mouse = { x: -999, y: -999 };
+  const COUNT = 70, CONNECT_DIST = 130, MOUSE_DIST = 160;
 
-  document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; });
+  function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener("resize", resize);
+
+  function randBetween(a, b) { return a + Math.random() * (b - a); }
+  function makeParticle() {
+    return { x: Math.random()*W, y: Math.random()*H, vx: randBetween(-0.25,0.25), vy: randBetween(-0.25,0.25), r: randBetween(1.2,2.5) };
+  }
+  for (let i = 0; i < COUNT; i++) particles.push(makeParticle());
+  document.addEventListener("mousemove", e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+
+  function drawParticles() {
+    ctx.clearRect(0, 0, W, H);
+    const isDark   = !document.body.classList.contains("light");
+    const dotColor = isDark ? "rgba(0,229,255,0.7)"  : "rgba(0,100,180,0.5)";
+    const lineBase = isDark ? "rgba(0,229,255,"       : "rgba(0,100,180,";
+
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+      if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+      const dx = mouse.x - p.x, dy = mouse.y - p.y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < MOUSE_DIST) { p.x += dx * 0.003; p.y += dy * 0.003; }
+    });
+
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i+1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
+        const d  = Math.sqrt(dx*dx + dy*dy);
+        if (d < CONNECT_DIST) {
+          ctx.beginPath();
+          ctx.strokeStyle = lineBase + (1 - d/CONNECT_DIST) * 0.35 + ")";
+          ctx.lineWidth = 0.8;
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    particles.forEach(p => {
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = dotColor; ctx.fill();
+    });
+    requestAnimationFrame(drawParticles);
+  }
+  drawParticles();
+
+  /* ===== CUSTOM CURSOR ===== */
+  const outer = document.querySelector(".cursor-outer");
+  const inner = document.querySelector(".cursor-inner");
+  let cx = 0, cy = 0, ox = 0, oy = 0;
+  document.addEventListener("mousemove", e => { cx = e.clientX; cy = e.clientY; });
   (function animCursor() {
-    rx += (mx - rx) * 0.14;
-    ry += (my - ry) * 0.14;
-    if (dot)  { dot.style.left  = mx + "px"; dot.style.top  = my + "px"; }
-    if (ring) { ring.style.left = rx + "px"; ring.style.top = ry + "px"; }
+    ox += (cx - ox) * 0.13; oy += (cy - oy) * 0.13;
+    if (inner) { inner.style.left = cx+"px"; inner.style.top = cy+"px"; }
+    if (outer) { outer.style.left = ox+"px"; outer.style.top = oy+"px"; }
     requestAnimationFrame(animCursor);
   })();
-
-  document.querySelectorAll("a, button, .skill-card, .featured-card, .other-card").forEach(el => {
-    el.addEventListener("mouseenter", () => { if (ring) { ring.style.width = "52px"; ring.style.height = "52px"; } });
-    el.addEventListener("mouseleave", () => { if (ring) { ring.style.width = "32px"; ring.style.height = "32px"; } });
+  document.querySelectorAll("a, button, .skill-block, .feat-card, .more-card, .pill").forEach(el => {
+    el.addEventListener("mouseenter", () => outer && outer.classList.add("expand"));
+    el.addEventListener("mouseleave", () => outer && outer.classList.remove("expand"));
   });
 
   /* ===== THEME TOGGLE ===== */
   const themeBtn = document.getElementById("themeToggle");
-  const icon     = themeBtn ? themeBtn.querySelector(".theme-icon") : null;
-
   function setTheme(light) {
     document.body.classList.toggle("light", light);
-    if (icon) icon.textContent = light ? "☀" : "◐";
-    localStorage.setItem("theme", light ? "light" : "dark");
+    if (themeBtn) themeBtn.textContent = light ? "☀" : "◐";
+    localStorage.setItem("nb-theme", light ? "light" : "dark");
   }
+  const saved = localStorage.getItem("nb-theme");
+  if (saved) setTheme(saved === "light");
+  else setTheme(window.matchMedia("(prefers-color-scheme: light)").matches);
+  if (themeBtn) themeBtn.addEventListener("click", () => setTheme(!document.body.classList.contains("light")));
 
-  const saved = localStorage.getItem("theme");
-  if (saved) {
-    setTheme(saved === "light");
-  } else {
-    setTheme(window.matchMedia("(prefers-color-scheme: light)").matches);
-  }
-
-  if (themeBtn) {
-    themeBtn.addEventListener("click", () => setTheme(!document.body.classList.contains("light")));
-  }
-
-  /* ===== NAV SCROLL EFFECT ===== */
+  /* ===== NAV SCROLL ===== */
   const nav = document.getElementById("nav");
   window.addEventListener("scroll", () => {
-    if (nav) nav.classList.toggle("scrolled", window.scrollY > 20);
+    nav && nav.classList.toggle("scrolled", window.scrollY > 20);
   }, { passive: true });
 
-  /* ===== NAV BRAND → SCROLL TO TOP ===== */
   const navBrand = document.getElementById("navBrand");
-  if (navBrand) {
-    navBrand.addEventListener("click", e => {
+  navBrand && navBrand.addEventListener("click", e => {
+    e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
+    link.addEventListener("click", e => {
       e.preventDefault();
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      const t = document.querySelector(link.getAttribute("href"));
+      if (t) t.scrollIntoView({ behavior: "smooth" });
     });
-  }
+  });
 
   /* ===== TYPEWRITER ===== */
   const typeTarget = document.getElementById("typewriter");
-  const phrases = [
-    "AI Engineer & Data Scientist",
-    "Machine Learning Engineer",
-    "Generative AI Developer",
-    "NLP Specialist",
-  ];
+  const phrases = ["AI Engineer", "Data Scientist", "ML Engineer", "GenAI Developer", "NLP Specialist"];
   let pIdx = 0, cIdx = 0, deleting = false;
-
   function typeLoop() {
     if (!typeTarget) return;
-    const current = phrases[pIdx];
-
+    const cur = phrases[pIdx];
     if (!deleting) {
-      typeTarget.textContent = current.slice(0, cIdx + 1);
-      cIdx++;
-      if (cIdx === current.length) {
-        deleting = true;
-        setTimeout(typeLoop, 1800);
-        return;
-      }
-      setTimeout(typeLoop, 80);
+      typeTarget.textContent = cur.slice(0, cIdx + 1); cIdx++;
+      if (cIdx === cur.length) { deleting = true; setTimeout(typeLoop, 2000); return; }
+      setTimeout(typeLoop, 90);
     } else {
-      typeTarget.textContent = current.slice(0, cIdx - 1);
-      cIdx--;
-      if (cIdx === 0) {
-        deleting = false;
-        pIdx = (pIdx + 1) % phrases.length;
-        setTimeout(typeLoop, 400);
-        return;
-      }
-      setTimeout(typeLoop, 40);
+      typeTarget.textContent = cur.slice(0, cIdx - 1); cIdx--;
+      if (cIdx === 0) { deleting = false; pIdx = (pIdx + 1) % phrases.length; setTimeout(typeLoop, 400); return; }
+      setTimeout(typeLoop, 45);
     }
   }
   typeLoop();
 
-  /* ===== INTERSECTION OBSERVER — REVEAL ===== */
+  /* ===== REVEAL OBSERVER ===== */
   const revealObs = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("in-view");
-        obs.unobserve(entry.target);
-      }
+      if (entry.isIntersecting) { entry.target.classList.add("in-view"); obs.unobserve(entry.target); }
     });
   }, { threshold: 0, rootMargin: "0px 0px -40px 0px" });
 
   document.querySelectorAll(".reveal").forEach((el, i) => {
-    el.style.transitionDelay = (i % 6) * 0.08 + "s";
+    el.style.transitionDelay = (i % 5) * 0.07 + "s";
     revealObs.observe(el);
   });
 
-  // Force-show anything already visible on load (GitHub Pages / hash navigation)
-  function forceRevealVisible() {
+  function forceRevealInView() {
     document.querySelectorAll(".reveal:not(.in-view)").forEach(el => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        el.classList.add("in-view");
-      }
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) el.classList.add("in-view");
     });
   }
-  forceRevealVisible();
-  setTimeout(forceRevealVisible, 300);
+  forceRevealInView();
+  setTimeout(forceRevealInView, 200);
+  setTimeout(forceRevealInView, 600);
 
-  /* ===== SKILL BARS (triggered on scroll) ===== */
+  /* ===== SKILL BARS ===== */
   const skillObs = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("in-view");
-        obs.unobserve(entry.target);
-      }
+      if (entry.isIntersecting) { entry.target.classList.add("in-view"); obs.unobserve(entry.target); }
     });
   }, { threshold: 0, rootMargin: "0px 0px -20px 0px" });
+  document.querySelectorAll(".skill-block").forEach(el => skillObs.observe(el));
 
-  document.querySelectorAll(".skill-card").forEach(card => skillObs.observe(card));
-
-  /* ===== SMOOTH NAV LINKS ===== */
-  document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
-    link.addEventListener("click", e => {
-      e.preventDefault();
-      const target = document.querySelector(link.getAttribute("href"));
-      if (target) target.scrollIntoView({ behavior: "smooth" });
-    });
+  /* ===== HERO STAGGER ===== */
+  document.querySelectorAll(".hero .reveal").forEach((el, i) => {
+    el.style.transitionDelay = i * 0.11 + "s";
+    setTimeout(() => el.classList.add("in-view"), i * 110 + 60);
   });
 
-  /* ===== ACTIVE NAV HIGHLIGHT ===== */
-  const sections = document.querySelectorAll("section[id], div[id]");
-  const navLinks = document.querySelectorAll(".nav-links a");
-  const activeObs = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navLinks.forEach(a => {
-          a.style.color = a.getAttribute("href") === "#" + entry.target.id
-            ? "var(--text)" : "";
-        });
-      }
-    });
-  }, { threshold: 0.4 });
-  sections.forEach(s => activeObs.observe(s));
-
-  /* ===== EMAILJS CONTACT FORM ===== */
+  /* ===== EMAILJS ===== */
   if (typeof emailjs !== "undefined") {
     emailjs.init("nU75PecxW6K6vssR8");
-
-    const form      = document.getElementById("contactForm");
-    const statusMsg = document.getElementById("statusMsg");
-
-    if (form && statusMsg) {
-      form.addEventListener("submit", function (e) {
+    const form = document.getElementById("contactForm");
+    const msg  = document.getElementById("statusMsg");
+    if (form && msg) {
+      form.addEventListener("submit", function(e) {
         e.preventDefault();
-        statusMsg.style.color = "var(--text-muted)";
-        statusMsg.textContent  = "⏳ Sending…";
-
+        msg.style.color = "var(--text-2)"; msg.textContent = "Sending...";
         emailjs.sendForm("service_vma8vc6", "template_odou3q9", this)
           .then(() => {
-            statusMsg.style.color = "#22c55e";
-            statusMsg.textContent  = "✅ Message sent! I'll get back to you soon.";
+            msg.style.color = "var(--accent-3)";
+            msg.textContent = "Message sent! I'll get back to you soon.";
             form.reset();
           })
           .catch(err => {
-            console.error("EmailJS error:", err);
-            statusMsg.style.color = "#f87171";
-            statusMsg.textContent  = "❌ Failed to send. Please email me directly.";
+            console.error(err);
+            msg.style.color = "#f87171";
+            msg.textContent = "Failed. Please email me directly.";
           });
       });
     }
   }
 
-  /* ===== RESUME MODAL ===== */
-  const resumeModal = document.getElementById("resumeModal");
-  const closeResume = document.getElementById("closeResume");
+  /* =====================================================
+     RESUME MODAL
+     — Opens inline PDF viewer; does NOT trigger download.
+     — Only the "Download" button inside the modal downloads.
+     ===================================================== */
+  const resumeModal    = document.getElementById("resumeModal");
+  const viewResumeBtn  = document.getElementById("viewResumeBtn");      // nav button
+  const footerResumeBtn= document.getElementById("footerResumeBtn");    // footer button
+  const closeResumeBtn = document.getElementById("closeResume");        // ✕ button
 
-  // The HTML has a direct download link, not a "view" button — modal is optional.
-  // Attach close logic in case it's opened from anywhere.
-  if (closeResume && resumeModal) {
-    closeResume.addEventListener("click", () => { resumeModal.style.display = "none"; });
-    window.addEventListener("click", e => {
-      if (e.target === resumeModal) resumeModal.style.display = "none";
-    });
-    window.addEventListener("keydown", e => {
-      if (e.key === "Escape") resumeModal.style.display = "none";
+  function openResume() {
+    if (!resumeModal) return;
+    resumeModal.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeResume() {
+    if (!resumeModal) return;
+    resumeModal.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+
+  if (viewResumeBtn)   viewResumeBtn.addEventListener("click", openResume);
+  if (footerResumeBtn) footerResumeBtn.addEventListener("click", openResume);
+  if (closeResumeBtn)  closeResumeBtn.addEventListener("click", closeResume);
+
+  // Close on backdrop click (outside the modal box)
+  if (resumeModal) {
+    resumeModal.addEventListener("click", e => {
+      if (e.target === resumeModal) closeResume();
     });
   }
 
-  /* ===== STAGGER HERO REVEALS — show immediately on load ===== */
-  document.querySelectorAll(".hero .reveal").forEach((el, i) => {
-    el.style.transitionDelay = i * 0.12 + "s";
-    setTimeout(() => el.classList.add("in-view"), i * 120 + 50);
+  // Close on Escape key
+  window.addEventListener("keydown", e => {
+    if (e.key === "Escape") closeResume();
   });
+
 });
