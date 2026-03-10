@@ -2,137 +2,170 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Nikhil Borade — Aspiring AI/ML Engineer & Data Scientist</title>
-<meta name="description" content="Portfolio of Nikhil Borade – AI Engineer & Data Scientist specializing in ML, NLP, and Generative AI.">
+<title>Nikhil Borade — AI Engineer & Data Scientist</title>
+<meta name="description" content="Portfolio of Nikhil Borade – Fresher AI Engineer & Data Scientist specializing in ML, NLP, and Generative AI.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- ===== CURSOR ===== -->
-<div class="cursor-dot"></div>
-<div class="cursor-ring"></div>
+<!-- Canvas for particle network -->
+<canvas id="particleCanvas"></canvas>
+
+<!-- Noise overlay -->
+<div class="noise"></div>
+
+<!-- Custom cursor -->
+<div class="cursor-outer"></div>
+<div class="cursor-inner"></div>
 
 <!-- ===== NAV ===== -->
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="#" class="nav-brand" id="navBrand">NB<span class="dot">.</span></a>
+    <a href="#home" class="nav-logo" id="navBrand">
+      <span class="logo-bracket">[</span>NB<span class="logo-bracket">]</span>
+    </a>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#featured-projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about"><span class="link-num">01.</span>About</a></li>
+      <li><a href="#skills"><span class="link-num">02.</span>Skills</a></li>
+      <li><a href="#projects"><span class="link-num">03.</span>Projects</a></li>
+      <li><a href="#contact"><span class="link-num">04.</span>Contact</a></li>
     </ul>
-    <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">
-      <span class="theme-icon">◐</span>
-    </button>
+    <!-- Changed: no download, opens modal instead -->
+    <button class="nav-resume" id="viewResumeBtn">Resume ↗</button>
+    <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">◐</button>
   </div>
 </nav>
 
 <!-- ===== HERO ===== -->
 <section class="hero" id="home">
-  <div class="hero-bg">
-    <div class="grid-overlay"></div>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-status reveal">
+        <span class="status-dot"></span>
+        <span class="status-text">Open to full-time roles</span>
+        <span class="status-loc">· Pune, IN</span>
+      </div>
+
+      <div class="hero-greeting reveal">Hello, I'm</div>
+
+      <h1 class="hero-name reveal">
+        <span class="name-line">Nikhil</span>
+        <span class="name-line accent-stroke">Borade</span>
+      </h1>
+
+      <div class="hero-role reveal">
+        <span class="role-prefix">&gt;_</span>
+        <span id="typewriter" class="role-text"></span>
+        <span class="cursor-blink">▋</span>
+      </div>
+
+      <p class="hero-bio reveal">
+        Fresher AI/ML Engineer passionate about building real-world intelligent systems — from
+        <em>NLP pipelines</em> and <em>generative AI</em> to <em>cloud-deployed ML apps</em>.
+        I turn research into production.
+      </p>
+
+      <div class="hero-cta reveal">
+        <a href="#projects" class="btn-primary">
+          <span>View My Work</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <div class="hero-socials">
+          <a href="mailto:nikhilsborade3@gmail.com" class="social-chip" title="Email">✉</a>
+          <a href="https://linkedin.com/in/nikhil-borade0412" target="_blank" class="social-chip" title="LinkedIn">in</a>
+          <a href="https://github.com/nikhilborade0412" target="_blank" class="social-chip" title="GitHub">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-stats reveal">
+        <div class="stat-item">
+          <span class="stat-val">10+</span>
+          <span class="stat-key">Projects</span>
+        </div>
+        <div class="stat-div"></div>
+        <div class="stat-item">
+          <span class="stat-val">3+</span>
+          <span class="stat-key">Yrs Learning</span>
+        </div>
+        <div class="stat-div"></div>
+        <div class="stat-item">
+          <span class="stat-val">CS</span>
+          <span class="stat-key">Graduate</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right reveal">
+      <div class="photo-container">
+        <div class="photo-glow"></div>
+        <img src="images/nikhil.jpg" alt="Nikhil Borade" class="hero-photo">
+        <div class="photo-tag">
+          <span class="tag-dot"></span> Open to Work
+        </div>
+        <div class="photo-corner tl"></div>
+        <div class="photo-corner tr"></div>
+        <div class="photo-corner bl"></div>
+        <div class="photo-corner br"></div>
+      </div>
+    </div>
   </div>
-
-  <div class="hero-content">
-    <div class="hero-tag reveal">
-      <span class="tag-dot"></span>
-      Available for opportunities
-    </div>
-
-    <h1 class="hero-name reveal">
-      <span class="name-first">Nikhil</span>
-      <span class="name-last">Borade</span>
-    </h1>
-
-    <p class="hero-title reveal">
-      <span id="typewriter"></span><span class="cursor-blink">|</span>
-    </p>
-
-    <p class="hero-location reveal">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
-      Pune, Maharashtra
-    </p>
-
-    <div class="hero-links reveal">
-      <a href="mailto:nikhilsborade3@gmail.com" class="hero-link">Email</a>
-      <a href="https://linkedin.com/in/nikhil-borade0412" target="_blank" class="hero-link">LinkedIn</a>
-      <a href="https://github.com/nikhilborade0412" target="_blank" class="hero-link">GitHub</a>
-    </div>
-
-    <div class="hero-cta reveal">
-      <a href="resume.pdf" download class="btn-primary">Download CV</a>
-      <a href="#featured-projects" class="btn-ghost">View Work</a>
-    </div>
-  </div>
-
-  <div class="hero-photo reveal">
-    <div class="photo-frame">
-      <img src="images/nikhil.jpg" alt="Nikhil Borade" class="photo-img">
-      <div class="photo-badge">
-        <span class="badge-dot"></span>
-        Open to Work
-      </div>
-    </div>
-    <div class="photo-stats">
-      <div class="stat">
-        <span class="stat-num">10+</span>
-        <span class="stat-label">Projects</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num">3+</span>
-        <span class="stat-label">Years Learning</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num">1+</span>
-        <span class="stat-label">Deployments</span>
-      </div>
-    </div>
+  <div class="scroll-hint">
+    <span>scroll</span>
+    <div class="scroll-line"></div>
   </div>
 </section>
 
 <!-- ===== ABOUT ===== -->
 <section class="section" id="about">
   <div class="section-inner">
-    <div class="section-label reveal">01 — About</div>
-    <div class="about-grid">
+    <div class="section-header reveal">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">About Me</h2>
+    </div>
+
+    <div class="about-layout">
       <div class="about-text reveal">
-        <h2 class="section-heading">Building AI that<br><em>actually ships</em></h2>
-        <p>AI Engineer and Data Scientist with hands-on experience in Machine Learning, Generative AI, NLP, and deploying AI applications using Streamlit and cloud platforms. Passionate about building real-world AI systems that solve business problems using data-driven insights.</p>
-        <p>I specialize in taking ideas from prototype to production — bridging the gap between research and real-world deployment.</p>
+        <h3 class="about-headline">Building AI that <em>actually ships</em></h3>
+        <p>I'm a fresher AI Engineer and Data Scientist with hands-on experience in Machine Learning, Generative AI, NLP, and deploying AI applications on cloud platforms. I'm passionate about building real-world AI systems that solve business problems using data-driven insights.</p>
+        <p>I specialize in taking ideas from prototype to production — bridging the gap between research and real-world deployment. Currently seeking my first full-time role where I can contribute and grow fast.</p>
+        <!-- This one stays as download since it's explicitly for downloading -->
+        <a href="resume.pdf" download class="btn-outline">Download Resume ↓</a>
       </div>
-      <div class="about-details reveal">
-        <div class="detail-grid">
-          <div class="detail-item">
-            <span class="detail-label">Role</span>
-            <span class="detail-value">AI Engineer & Data Scientist</span>
-          </div>
-          <div class="detail-item">
-            <span class="detail-label">Domain</span>
-            <span class="detail-value">ML · NLP · Generative AI</span>
-          </div>
-          <div class="detail-item">
-            <span class="detail-label">Education</span>
-            <span class="detail-value">B.Sc. Computer Science</span>
-          </div>
-          <div class="detail-item">
-            <span class="detail-label">Languages</span>
-            <span class="detail-value">English · Hindi · Marathi</span>
-          </div>
-          <div class="detail-item">
-            <span class="detail-label">BI Tools</span>
-            <span class="detail-value">Matplotlib · Seaborn · Power BI</span>
-          </div>
-          <div class="detail-item">
-            <span class="detail-label">Contact</span>
-            <span class="detail-value">nikhilsborade3@gmail.com</span>
-          </div>
+
+      <div class="about-card reveal">
+        <div class="card-row">
+          <span class="card-key">Role</span>
+          <span class="card-val">AI Engineer & Data Scientist</span>
+        </div>
+        <div class="card-row">
+          <span class="card-key">Status</span>
+          <span class="card-val fresher-badge">Fresher · Open to Work</span>
+        </div>
+        <div class="card-row">
+          <span class="card-key">Domain</span>
+          <span class="card-val">ML · NLP · Generative AI</span>
+        </div>
+        <div class="card-row">
+          <span class="card-key">Education</span>
+          <span class="card-val">B.Sc. Computer Science</span>
+        </div>
+        <div class="card-row">
+          <span class="card-key">Location</span>
+          <span class="card-val">Pune, Maharashtra</span>
+        </div>
+        <div class="card-row">
+          <span class="card-key">Languages</span>
+          <span class="card-val">English · Hindi · Marathi</span>
+        </div>
+        <div class="card-row">
+          <span class="card-key">Email</span>
+          <span class="card-val">nikhilsborade3@gmail.com</span>
         </div>
       </div>
     </div>
@@ -140,253 +173,342 @@
 </section>
 
 <!-- ===== SKILLS ===== -->
-<section class="section section-alt" id="skills">
+<section class="section section-dark" id="skills">
   <div class="section-inner">
-    <div class="section-label reveal">02 — Skills</div>
-    <h2 class="section-heading reveal">Technical <em>Expertise</em></h2>
+    <div class="section-header reveal">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">Technical Skills</h2>
+    </div>
 
-    <div class="skills-grid">
-      <div class="skill-card reveal">
-        <div class="skill-icon">{ }</div>
-        <h3>Programming</h3>
-        <p>Python, SQL</p>
-        <div class="skill-bar"><div class="skill-fill" style="--w:90%"></div></div>
+    <div class="skills-wrap">
+      <div class="skill-block reveal">
+        <div class="skill-head">
+          <span class="skill-ico">{ }</span>
+          <div>
+            <h3>Programming</h3>
+            <p>Python · SQL</p>
+          </div>
+          <span class="skill-pct">90%</span>
+        </div>
+        <div class="sbar"><div class="sbar-fill" style="--w:90%"></div></div>
       </div>
-      <div class="skill-card reveal">
-        <div class="skill-icon">∑</div>
-        <h3>Data Analysis</h3>
-        <p>Pandas, NumPy, EDA, Feature Engineering</p>
-        <div class="skill-bar"><div class="skill-fill" style="--w:88%"></div></div>
+
+      <div class="skill-block reveal">
+        <div class="skill-head">
+          <span class="skill-ico">∑</span>
+          <div>
+            <h3>Data Analysis</h3>
+            <p>Pandas · NumPy · EDA · Feature Eng.</p>
+          </div>
+          <span class="skill-pct">88%</span>
+        </div>
+        <div class="sbar"><div class="sbar-fill" style="--w:88%"></div></div>
       </div>
-      <div class="skill-card reveal">
-        <div class="skill-icon">⊗</div>
-        <h3>Machine Learning</h3>
-        <p>Scikit-learn, Regression, Classification, SMOTE</p>
-        <div class="skill-bar"><div class="skill-fill" style="--w:85%"></div></div>
+
+      <div class="skill-block reveal">
+        <div class="skill-head">
+          <span class="skill-ico">⊗</span>
+          <div>
+            <h3>Machine Learning</h3>
+            <p>Scikit-learn · Regression · Classification · SMOTE</p>
+          </div>
+          <span class="skill-pct">85%</span>
+        </div>
+        <div class="sbar"><div class="sbar-fill" style="--w:85%"></div></div>
       </div>
-      <div class="skill-card reveal">
-        <div class="skill-icon">ψ</div>
-        <h3>NLP</h3>
-        <p>TF-IDF, Sentiment Analysis, Text Processing</p>
-        <div class="skill-bar"><div class="skill-fill" style="--w:82%"></div></div>
+
+      <div class="skill-block reveal">
+        <div class="skill-head">
+          <span class="skill-ico">ψ</span>
+          <div>
+            <h3>NLP</h3>
+            <p>TF-IDF · Sentiment Analysis · Text Processing</p>
+          </div>
+          <span class="skill-pct">82%</span>
+        </div>
+        <div class="sbar"><div class="sbar-fill" style="--w:82%"></div></div>
       </div>
-      <div class="skill-card reveal">
-        <div class="skill-icon">✦</div>
-        <h3>Generative AI</h3>
-        <p>Prompt Engineering, Gemini API, LLM Applications</p>
-        <div class="skill-bar"><div class="skill-fill" style="--w:80%"></div></div>
+
+      <div class="skill-block reveal">
+        <div class="skill-head">
+          <span class="skill-ico">✦</span>
+          <div>
+            <h3>Generative AI</h3>
+            <p>Prompt Engineering · Gemini API · LLM Apps</p>
+          </div>
+          <span class="skill-pct">80%</span>
+        </div>
+        <div class="sbar"><div class="sbar-fill" style="--w:80%"></div></div>
       </div>
-      <div class="skill-card reveal">
-        <div class="skill-icon">⚙</div>
-        <h3>MLOps</h3>
-        <p>MLflow, Experiment Tracking, Model Versioning</p>
-        <div class="skill-bar"><div class="skill-fill" style="--w:75%"></div></div>
+
+      <div class="skill-block reveal">
+        <div class="skill-head">
+          <span class="skill-ico">⚙</span>
+          <div>
+            <h3>MLOps</h3>
+            <p>MLflow · Experiment Tracking · Model Versioning</p>
+          </div>
+          <span class="skill-pct">75%</span>
+        </div>
+        <div class="sbar"><div class="sbar-fill" style="--w:75%"></div></div>
       </div>
-      <div class="skill-card reveal">
-        <div class="skill-icon">↑</div>
-        <h3>Deployment</h3>
-        <p>Streamlit, AWS EC2, Cloud Deployment</p>
-        <div class="skill-bar"><div class="skill-fill" style="--w:78%"></div></div>
+
+      <div class="skill-block reveal">
+        <div class="skill-head">
+          <span class="skill-ico">↑</span>
+          <div>
+            <h3>Deployment</h3>
+            <p>Streamlit · AWS EC2 · Cloud</p>
+          </div>
+          <span class="skill-pct">78%</span>
+        </div>
+        <div class="sbar"><div class="sbar-fill" style="--w:78%"></div></div>
       </div>
-      <div class="skill-card reveal">
-        <div class="skill-icon">◈</div>
-        <h3>Visualization</h3>
-        <p>Matplotlib, Seaborn, Power BI</p>
-        <div class="skill-bar"><div class="skill-fill" style="--w:83%"></div></div>
+
+      <div class="skill-block reveal">
+        <div class="skill-head">
+          <span class="skill-ico">◈</span>
+          <div>
+            <h3>Visualization</h3>
+            <p>Matplotlib · Seaborn · Power BI</p>
+          </div>
+          <span class="skill-pct">83%</span>
+        </div>
+        <div class="sbar"><div class="sbar-fill" style="--w:83%"></div></div>
       </div>
+    </div>
+
+    <div class="tech-pills reveal">
+      <span class="pill">Python</span><span class="pill">SQL</span>
+      <span class="pill">Scikit-learn</span><span class="pill">Pandas</span>
+      <span class="pill">NumPy</span><span class="pill">TF-IDF</span>
+      <span class="pill">Gemini API</span><span class="pill">MLflow</span>
+      <span class="pill">Streamlit</span><span class="pill">AWS EC2</span>
+      <span class="pill">Power BI</span><span class="pill">Seaborn</span>
+      <span class="pill">SMOTE</span><span class="pill">SVM</span>
+      <span class="pill">KNN</span><span class="pill">NLP</span>
     </div>
   </div>
 </section>
 
 <!-- ===== FEATURED PROJECTS ===== -->
-<section class="section" id="featured-projects">
+<section class="section" id="projects">
   <div class="section-inner">
-    <div class="section-label reveal">03 — Featured Work</div>
-    <h2 class="section-heading reveal">AI Applications <em>in Production</em></h2>
+    <div class="section-header reveal">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">Featured Projects</h2>
+    </div>
 
-    <div class="featured-grid">
-
-      <div class="featured-card reveal">
-        <div class="card-image">
+    <div class="feat-grid">
+      <article class="feat-card reveal">
+        <div class="feat-img">
           <img src="images/pharmagen-ai.png" alt="PharmaGen AI">
-          <div class="card-overlay">
-            <a href="https://github.com/nikhilborade0412/pharmagen-ai" target="_blank" class="overlay-link">GitHub ↗</a>
-            <a href="http://35.154.207.125:8501" target="_blank" class="overlay-link live">Live ↗</a>
+          <div class="feat-overlay">
+            <a href="https://github.com/nikhilborade0412/pharmagen-ai" target="_blank" class="ov-btn">GitHub ↗</a>
+            <a href="http://35.154.207.125:8501" target="_blank" class="ov-btn live">Live ↗</a>
           </div>
         </div>
-        <div class="card-body">
-          <div class="card-tags">
-            <span class="tag">Gemini 2.5</span>
-            <span class="tag">GenAI</span>
-            <span class="tag">Streamlit</span>
-            <span class="tag">AWS</span>
+        <div class="feat-body">
+          <div class="feat-tags">
+            <span>Gemini 2.5</span><span>GenAI</span><span>Streamlit</span><span>AWS</span>
           </div>
           <h3>PharmaGen AI</h3>
-          <p>Domain-specific pharmaceutical chatbot powered by Gemini 2.5 Flash with conversation memory and cloud deployment on AWS EC2.</p>
-          <div class="card-footer">
-            <a href="https://github.com/nikhilborade0412/pharmagen-ai" target="_blank" class="card-link">View Project →</a>
-            <a href="http://35.154.207.125:8501" target="_blank" class="card-link live-link">Live Demo →</a>
+          <p>Domain-specific pharmaceutical chatbot powered by Gemini 2.5 Flash. Features conversation memory, context-aware responses, and live cloud deployment on AWS EC2.</p>
+          <div class="feat-links">
+            <a href="https://github.com/nikhilborade0412/pharmagen-ai" target="_blank">View Code →</a>
+            <a href="http://35.154.207.125:8501" target="_blank" class="live-a">Live Demo →</a>
           </div>
         </div>
-      </div>
+      </article>
 
-      <div class="featured-card reveal">
-        <div class="card-image">
-          <img src="images/flipkart-sentiment.png" alt="Sentiment Analysis">
-          <div class="card-overlay">
-            <a href="https://github.com/nikhilborade0412/flipkart-review-sentiment-analysis" target="_blank" class="overlay-link">GitHub ↗</a>
-            <a href="http://13.126.219.228:8501/" target="_blank" class="overlay-link live">Live ↗</a>
+      <article class="feat-card reveal">
+        <div class="feat-img">
+          <img src="images/flipkart-sentiment.png" alt="Flipkart Sentiment">
+          <div class="feat-overlay">
+            <a href="https://github.com/nikhilborade0412/flipkart-review-sentiment-analysis" target="_blank" class="ov-btn">GitHub ↗</a>
+            <a href="http://13.126.219.228:8501/" target="_blank" class="ov-btn live">Live ↗</a>
           </div>
         </div>
-        <div class="card-body">
-          <div class="card-tags">
-            <span class="tag">NLP</span>
-            <span class="tag">TF-IDF</span>
-            <span class="tag">MLflow</span>
-            <span class="tag">SVM</span>
+        <div class="feat-body">
+          <div class="feat-tags">
+            <span>NLP</span><span>TF-IDF</span><span>MLflow</span><span>SVM</span>
           </div>
           <h3>Flipkart Sentiment Analysis</h3>
-          <p>NLP classification pipeline using TF-IDF and Linear SVM with full MLflow experiment tracking and MLOps best practices.</p>
-          <div class="card-footer">
-            <a href="https://github.com/nikhilborade0412/flipkart-review-sentiment-analysis" target="_blank" class="card-link">View Project →</a>
-            <a href="http://13.126.219.228:8501/" target="_blank" class="card-link live-link">Live Demo →</a>
+          <p>End-to-end NLP pipeline for product review classification. TF-IDF vectorisation + Linear SVM with complete MLflow experiment tracking and MLOps best practices.</p>
+          <div class="feat-links">
+            <a href="https://github.com/nikhilborade0412/flipkart-review-sentiment-analysis" target="_blank">View Code →</a>
+            <a href="http://13.126.219.228:8501/" target="_blank" class="live-a">Live Demo →</a>
           </div>
         </div>
-      </div>
+      </article>
 
-      <div class="featured-card reveal">
-        <div class="card-image">
-          <img src="images/travel.png" alt="Travel Prediction">
-          <div class="card-overlay">
-            <a href="https://github.com/nikhilborade0412/travel-package-purchase-prediction" target="_blank" class="overlay-link">GitHub ↗</a>
-            <a href="http://13.235.252.76:8501/" target="_blank" class="overlay-link live">Live ↗</a>
+      <article class="feat-card reveal">
+        <div class="feat-img">
+          <img src="images/travel.png" alt="Travel Predictor">
+          <div class="feat-overlay">
+            <a href="https://github.com/nikhilborade0412/travel-package-purchase-prediction" target="_blank" class="ov-btn">GitHub ↗</a>
+            <a href="http://13.235.252.76:8501/" target="_blank" class="ov-btn live">Live ↗</a>
           </div>
         </div>
-        <div class="card-body">
-          <div class="card-tags">
-            <span class="tag">ML</span>
-            <span class="tag">Scikit-learn</span>
-            <span class="tag">Streamlit</span>
+        <div class="feat-body">
+          <div class="feat-tags">
+            <span>ML</span><span>Scikit-learn</span><span>Streamlit</span><span>AWS</span>
           </div>
           <h3>Travel Package Predictor</h3>
-          <p>Machine learning model predicting customer travel package purchases, deployed as an interactive Streamlit application on AWS.</p>
-          <div class="card-footer">
-            <a href="https://github.com/nikhilborade0412/travel-package-purchase-prediction" target="_blank" class="card-link">View Project →</a>
-            <a href="http://13.235.252.76:8501/" target="_blank" class="card-link live-link">Live Demo →</a>
+          <p>ML model predicting customer travel package purchases with feature engineering and class imbalance handling. Deployed as an interactive Streamlit app on AWS.</p>
+          <div class="feat-links">
+            <a href="https://github.com/nikhilborade0412/travel-package-purchase-prediction" target="_blank">View Code →</a>
+            <a href="http://13.235.252.76:8501/" target="_blank" class="live-a">Live Demo →</a>
           </div>
         </div>
-      </div>
-
+      </article>
     </div>
-  </div>
-</section>
 
-<!-- ===== OTHER PROJECTS ===== -->
-<section class="section section-alt" id="projects">
-  <div class="section-inner">
-    <div class="section-label reveal">04 — More Work</div>
-    <h2 class="section-heading reveal">Other <em>Projects</em></h2>
-
-    <div class="other-grid">
-
-      <a href="https://github.com/nikhilborade0412/geely-auto-us-market-fueltype-prediction" target="_blank" class="other-card reveal">
-        <div class="other-num">01</div>
-        <img src="images/geely-auto.png" alt="Geely Auto">
-        <h3>Geely Auto — Fuel Type Prediction</h3>
+    <h3 class="more-heading reveal">More Projects</h3>
+    <div class="more-grid">
+      <a href="https://github.com/nikhilborade0412/geely-auto-us-market-fueltype-prediction" target="_blank" class="more-card reveal">
+        <div class="more-top">
+          <img src="images/geely-auto.png" alt="Geely">
+          <span class="more-arrow">↗</span>
+        </div>
+        <h4>Geely Auto — Fuel Type Prediction</h4>
         <p>Logistic Regression + SMOTE for US automobile market strategy analysis.</p>
-        <span class="other-arrow">→</span>
+        <div class="more-tags"><span>ML</span><span>SMOTE</span><span>Logistic Reg.</span></div>
       </a>
 
-      <a href="https://github.com/nikhilborade0412/true-fake-news-detection-nlp" target="_blank" class="other-card reveal">
-        <div class="other-num">02</div>
-        <img src="images/fake-news.png" alt="Fake News">
-        <h3>Fake News Detection</h3>
-        <p>NLP pipeline using TF-IDF and Naive Bayes classifier for misinformation detection.</p>
-        <span class="other-arrow">→</span>
+      <a href="https://github.com/nikhilborade0412/true-fake-news-detection-nlp" target="_blank" class="more-card reveal">
+        <div class="more-top">
+          <img src="images/fake-news.png" alt="Fake News">
+          <span class="more-arrow">↗</span>
+        </div>
+        <h4>Fake News Detection</h4>
+        <p>NLP pipeline using TF-IDF and Naive Bayes for misinformation detection.</p>
+        <div class="more-tags"><span>NLP</span><span>TF-IDF</span><span>Naive Bayes</span></div>
       </a>
 
-      <a href="https://github.com/nikhilborade0412/KNN-Classification-Telco-Customer-Churn-Prediction" target="_blank" class="other-card reveal">
-        <div class="other-num">03</div>
-        <img src="images/churn.png" alt="Churn">
-        <h3>Customer Churn Prediction</h3>
-        <p>KNN-based churn prediction for telecom customer retention optimization.</p>
-        <span class="other-arrow">→</span>
+      <a href="https://github.com/nikhilborade0412/KNN-Classification-Telco-Customer-Churn-Prediction" target="_blank" class="more-card reveal">
+        <div class="more-top">
+          <img src="images/churn.png" alt="Churn">
+          <span class="more-arrow">↗</span>
+        </div>
+        <h4>Customer Churn Prediction</h4>
+        <p>KNN-based churn prediction for telecom customer retention.</p>
+        <div class="more-tags"><span>KNN</span><span>Classification</span><span>EDA</span></div>
       </a>
 
-      <a href="https://github.com/nikhilborade0412/Exploring-Market-Trends-in-the-Used-Bike-market-segment" target="_blank" class="other-card reveal">
-        <div class="other-num">04</div>
-        <img src="images/bike.png" alt="Bike">
-        <h3>Used Bike Market Analysis</h3>
-        <p>Web scraping and exploratory data analysis of the used bike market segment.</p>
-        <span class="other-arrow">→</span>
+      <a href="https://github.com/nikhilborade0412/Exploring-Market-Trends-in-the-Used-Bike-market-segment" target="_blank" class="more-card reveal">
+        <div class="more-top">
+          <img src="images/bike.png" alt="Bike">
+          <span class="more-arrow">↗</span>
+        </div>
+        <h4>Used Bike Market Analysis</h4>
+        <p>Web scraping and EDA of the used bike market segment.</p>
+        <div class="more-tags"><span>Scraping</span><span>EDA</span><span>Pandas</span></div>
       </a>
 
-      <a href="https://github.com/nikhilborade0412/real-estate-bhk-analysis---python" target="_blank" class="other-card reveal">
-        <div class="other-num">05</div>
-        <img src="images/real-estate.png" alt="Real Estate">
-        <h3>Real Estate BHK Analysis</h3>
-        <p>Python-based housing price analysis and BHK segmentation study.</p>
-        <span class="other-arrow">→</span>
+      <a href="https://github.com/nikhilborade0412/real-estate-bhk-analysis---python" target="_blank" class="more-card reveal">
+        <div class="more-top">
+          <img src="images/real-estate.png" alt="Real Estate">
+          <span class="more-arrow">↗</span>
+        </div>
+        <h4>Real Estate BHK Analysis</h4>
+        <p>Housing price analysis and BHK segmentation study in Python.</p>
+        <div class="more-tags"><span>Python</span><span>EDA</span><span>Seaborn</span></div>
       </a>
 
-      <a href="https://github.com/nikhilborade0412/Global-EV-Market-Analysis-Dashboard" target="_blank" class="other-card reveal">
-        <div class="other-num">06</div>
-        <img src="images/ev.png" alt="EV">
-        <h3>Global EV Market Dashboard</h3>
-        <p>Interactive Power BI dashboard analyzing worldwide electric vehicle adoption trends.</p>
-        <span class="other-arrow">→</span>
+      <a href="https://github.com/nikhilborade0412/Global-EV-Market-Analysis-Dashboard" target="_blank" class="more-card reveal">
+        <div class="more-top">
+          <img src="images/ev.png" alt="EV Dashboard">
+          <span class="more-arrow">↗</span>
+        </div>
+        <h4>Global EV Market Dashboard</h4>
+        <p>Interactive Power BI dashboard on worldwide EV adoption trends.</p>
+        <div class="more-tags"><span>Power BI</span><span>BI</span><span>Dashboard</span></div>
       </a>
 
-      <a href="https://github.com/nikhilborade0412/Library-Management-System-SQL" target="_blank" class="other-card reveal">
-        <div class="other-num">07</div>
-        <img src="images/library.png" alt="Library">
-        <h3>Library Management System</h3>
-        <p>Full-featured SQL database system for library operations and record management.</p>
-        <span class="other-arrow">→</span>
+      <a href="https://github.com/nikhilborade0412/Library-Management-System-SQL" target="_blank" class="more-card reveal">
+        <div class="more-top">
+          <img src="images/library.png" alt="Library">
+          <span class="more-arrow">↗</span>
+        </div>
+        <h4>Library Management System</h4>
+        <p>Full-featured SQL database system for library operations.</p>
+        <div class="more-tags"><span>SQL</span><span>Database</span><span>CRUD</span></div>
       </a>
-
     </div>
   </div>
 </section>
 
 <!-- ===== CONTACT ===== -->
-<section class="section" id="contact">
+<section class="section section-dark" id="contact">
   <div class="section-inner">
-    <div class="section-label reveal">05 — Contact</div>
-    <div class="contact-wrap">
+    <div class="section-header reveal">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title">Get In Touch</h2>
+    </div>
+
+    <div class="contact-layout">
       <div class="contact-left reveal">
-        <h2 class="section-heading">Let's work<br><em>together</em></h2>
-        <p>Open to full-time roles, freelance projects, and collaborations in AI, ML, and Data Science. Let's build something meaningful.</p>
-        <div class="contact-info">
-          <a href="mailto:nikhilsborade3@gmail.com" class="contact-row">
-            <span class="contact-icon">✉</span>
-            <span>nikhilsborade3@gmail.com</span>
+        <h3 class="contact-headline">Let's work <em>together</em></h3>
+        <p>Open to full-time roles, internships, and collaborations in AI, ML, and Data Science. If you're looking for a motivated fresher who ships real projects — let's talk.</p>
+
+        <div class="contact-links">
+          <a href="mailto:nikhilsborade3@gmail.com" class="clink">
+            <span class="clink-ico">✉</span>
+            <div>
+              <span class="clink-label">Email</span>
+              <span class="clink-val">nikhilsborade3@gmail.com</span>
+            </div>
           </a>
-          <a href="tel:9421512632" class="contact-row">
-            <span class="contact-icon">✆</span>
-            <span>+91 9421512632</span>
+          <a href="tel:+919421512632" class="clink">
+            <span class="clink-ico">✆</span>
+            <div>
+              <span class="clink-label">Phone</span>
+              <span class="clink-val">+91 9421512632</span>
+            </div>
           </a>
-          <a href="https://linkedin.com/in/nikhil-borade0412" target="_blank" class="contact-row">
-            <span class="contact-icon">in</span>
-            <span>nikhil-borade0412</span>
+          <a href="https://linkedin.com/in/nikhil-borade0412" target="_blank" class="clink">
+            <span class="clink-ico">in</span>
+            <div>
+              <span class="clink-label">LinkedIn</span>
+              <span class="clink-val">nikhil-borade0412</span>
+            </div>
+          </a>
+          <a href="https://github.com/nikhilborade0412" target="_blank" class="clink">
+            <span class="clink-ico">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            </span>
+            <div>
+              <span class="clink-label">GitHub</span>
+              <span class="clink-val">nikhilborade0412</span>
+            </div>
           </a>
         </div>
       </div>
 
       <form class="contact-form reveal" id="contactForm" autocomplete="off">
-        <div class="form-group">
-          <label>Name</label>
-          <input type="text" name="from_name" placeholder="Your name" required>
+        <div class="form-row">
+          <div class="fg">
+            <label>Name</label>
+            <input type="text" name="from_name" placeholder="Your name" required>
+          </div>
+          <div class="fg">
+            <label>Email</label>
+            <input type="email" name="from_email" placeholder="your@email.com" required>
+          </div>
         </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" name="from_email" placeholder="your@email.com" required>
+        <div class="fg">
+          <label>Subject</label>
+          <input type="text" name="subject" placeholder="Job opportunity / Collaboration / Hi!">
         </div>
-        <div class="form-group">
+        <div class="fg">
           <label>Message</label>
-          <textarea name="message" placeholder="Tell me about your project..." required></textarea>
+          <textarea name="message" rows="5" placeholder="Tell me about the opportunity..." required></textarea>
         </div>
-        <button type="submit" class="btn-primary full-width">Send Message →</button>
+        <button type="submit" class="btn-primary submit-btn">
+          <span>Send Message</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
         <p id="statusMsg"></p>
       </form>
     </div>
@@ -396,20 +518,38 @@
 <!-- ===== FOOTER ===== -->
 <footer class="footer">
   <div class="footer-inner">
-    <span class="footer-brand">Nikhil Borade</span>
-    <span class="footer-copy">© 2025 · AI · ML · GenAI</span>
+    <span class="footer-logo">Nikhil Borade</span>
+    <span class="footer-copy">© 2025 Nikhil Borade · AI · ML · GenAI</span>
     <div class="footer-links">
       <a href="https://github.com/nikhilborade0412" target="_blank">GitHub</a>
       <a href="https://linkedin.com/in/nikhil-borade0412" target="_blank">LinkedIn</a>
+      <!-- Footer resume also opens modal -->
+      <button class="footer-resume-btn" id="footerResumeBtn">Resume</button>
     </div>
   </div>
 </footer>
 
-<!-- Resume Modal -->
+<!-- ===== RESUME MODAL ===== -->
 <div class="resume-modal" id="resumeModal">
   <div class="resume-modal-content">
-    <span class="resume-close" id="closeResume">✕</span>
-    <iframe src="resume.pdf"></iframe>
+    <!-- Header bar with title + actions -->
+    <div class="resume-modal-header">
+      <span class="resume-modal-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Resume — Nikhil Borade
+      </span>
+      <div class="resume-modal-actions">
+        <a href="resume.pdf" download class="resume-download-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download
+        </a>
+        <button class="resume-close" id="closeResume" aria-label="Close">✕</button>
+      </div>
+    </div>
+    <!-- PDF viewer -->
+    <div class="resume-modal-body">
+      <iframe src="resume.pdf#toolbar=0" id="resumeIframe"></iframe>
+    </div>
   </div>
 </div>
 
