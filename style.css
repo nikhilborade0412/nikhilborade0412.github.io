@@ -81,7 +81,7 @@ body {
   transition: background 0.3s, backdrop-filter 0.3s, box-shadow 0.3s;
 }
 .nav.scrolled {
-  background: var(--nav-bg);
+  background: rgba(10,14,23,0.75);
   backdrop-filter: blur(16px);
   box-shadow: 0 1px 0 var(--border);
 }
@@ -236,6 +236,8 @@ body {
 }
 body.light .photo-glow {
   background: radial-gradient(ellipse at center, rgba(100,80,255,0.15) 0%, rgba(0,111,166,0.1) 40%, transparent 70%);
+  body.light .section { background: transparent; }
+  body.light .section-dark { background: rgba(220,230,242,0.5); }
 }
 .hero-photo {
   width: 300px; height: 300px;
@@ -273,8 +275,9 @@ body.light .photo-glow {
 }
 
 /* ===== SECTIONS ===== */
-.section { position: relative; z-index: 2; padding: 6rem 2rem; background: var(--bg-1); }
-.section-dark { background: var(--bg-2); }
+.section { position: relative; z-index: 2; padding: 6rem 2rem; background: transparent; }
+.section-dark { background: rgba(15, 22, 35, 0.45); }
+.footer { position: relative; z-index: 2; background: rgba(15, 22, 35, 0.5); border-top: 1px solid var(--border); padding: 1.8rem 2rem; }
 .section-inner { max-width: 1200px; margin: 0 auto; }
 .section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 3.5rem; }
 .sec-num { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--accent-1); opacity: 0.7; }
