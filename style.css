@@ -22,22 +22,186 @@
 }
 
 body.light {
-  --bg-1:        #f0f4f8;
-  --bg-2:        #e4eaf2;
-  --bg-3:        #d8e2ee;
-  --text-1:      #0d1420;
-  --text-2:      #2d3a52;
-  --text-3:      #4a5568;
-  --accent-1:    #006fa6;
-  --accent-2:    #0088cc;
-  --accent-3:    #007a5e;
-  --border:      rgba(0,111,166,0.18);
-  --card-bg:     rgba(255,255,255,0.7);
-  --nav-bg:      rgba(240,244,248,0.92);
-  --pill-bg:     rgba(0,111,166,0.08);
-  --pill-border: rgba(0,111,166,0.25);
-  --shadow:      0 8px 32px rgba(0,0,0,0.12);
+  --bg-1:        #eef2f7;
+  --bg-2:        #e2e8f2;
+  --bg-3:        #d3dced;
+  --text-1:      #0b1120;
+  --text-2:      #1e2d45;
+  --text-3:      #3a4f6a;
+  --accent-1:    #0066cc;
+  --accent-2:    #0055aa;
+  --accent-3:    #006644;
+  --border:      rgba(0,80,180,0.2);
+  --card-bg:     rgba(255,255,255,0.85);
+  --nav-bg:      rgba(238,242,247,0.95);
+  --pill-bg:     rgba(0,80,180,0.08);
+  --pill-border: rgba(0,80,180,0.22);
+  --shadow:      0 8px 32px rgba(0,0,0,0.14);
 }
+
+/* ===== LIGHT MODE TARGETED FIXES ===== */
+
+/* Nav links & logo visible on light bg */
+body.light .nav-links a          { color: var(--text-2); }
+body.light .nav-links a:hover    { color: var(--accent-1); }
+body.light .nav-logo             { color: var(--text-1); }
+body.light .nav.scrolled         { background: rgba(238,242,247,0.96); box-shadow: 0 1px 0 var(--border); }
+
+/* Pills — strong border + text so they stand out on light bg */
+body.light .pill {
+  background: rgba(0,80,180,0.07);
+  border: 1px solid rgba(0,80,180,0.28);
+  color: #0055bb;
+}
+body.light .pill:hover { background: #0066cc; color: #fff; border-color: #0066cc; }
+
+/* Feat tags */
+body.light .feat-tags span {
+  background: rgba(0,80,180,0.07);
+  border: 1px solid rgba(0,80,180,0.25);
+  color: #0055bb;
+}
+
+/* More card tags */
+body.light .more-tags span {
+  background: rgba(0,80,180,0.07);
+  border: 1px solid rgba(0,80,180,0.25);
+  color: #0055bb;
+}
+
+/* Cert corner tag */
+body.light .cert-corner-tag {
+  background: rgba(0,80,180,0.07);
+  border: 1px solid rgba(0,80,180,0.25);
+  color: #0055bb;
+}
+
+/* Skill bars */
+body.light .sbar-fill { background: linear-gradient(90deg, #0066cc, #006644); }
+body.light .skill-ico, body.light .skill-pct { color: #0066cc; }
+
+/* Section dark — give it a real distinguishable bg in light mode */
+body.light .section-dark { background: rgba(210,220,238,0.6); }
+
+/* Cards */
+body.light .feat-card  { background: rgba(255,255,255,0.92); border-color: rgba(0,80,180,0.15); }
+body.light .more-card  { background: rgba(255,255,255,0.92); border-color: rgba(0,80,180,0.15); }
+body.light .skill-block{ background: rgba(255,255,255,0.85); border-color: rgba(0,80,180,0.15); }
+body.light .about-card { background: rgba(255,255,255,0.92); border-color: rgba(0,80,180,0.15); }
+body.light .clink      { background: rgba(255,255,255,0.85); border-color: rgba(0,80,180,0.18); }
+body.light .cert-card  { background: rgba(255,255,255,0.92); border-color: rgba(0,80,180,0.15); }
+body.light .achievement-card { background: rgba(255,255,255,0.92); border-color: rgba(0,80,180,0.15); }
+
+/* Achievement quote block */
+body.light .achievement-quote {
+  background: rgba(0,80,180,0.05);
+  border-color: rgba(0,80,180,0.15);
+}
+body.light .quote-bar { background: linear-gradient(to bottom, #0066cc, #006644); }
+
+/* Fresher badge */
+body.light .fresher-badge {
+  background: rgba(0,80,180,0.09);
+  border-color: rgba(0,80,180,0.25);
+  color: #006644;
+}
+
+/* Cert icon wrap */
+body.light .cert-icon-wrap {
+  background: rgba(0,80,180,0.07);
+  border-color: rgba(0,80,180,0.22);
+}
+body.light .cert-icon { color: #0066cc; }
+
+/* Cert view btn */
+body.light .cert-view-btn { background: #0066cc; color: #fff; }
+body.light .cert-dl-btn:hover { border-color: #0066cc; color: #0066cc; }
+
+/* Achievement badge */
+body.light .achievement-badge {
+  background: rgba(0,80,180,0.08);
+  border-color: rgba(0,80,180,0.22);
+  color: #0066cc;
+}
+body.light .badge-dot { background: #006644; }
+
+/* Stat values */
+body.light .stat-val { color: #0066cc; }
+
+/* Role box */
+body.light .hero-role { background: rgba(0,80,180,0.06); border-color: rgba(0,80,180,0.2); }
+body.light .role-text  { color: #0066cc; }
+body.light .role-prefix { color: #006644; }
+body.light .cursor-blink { color: #0066cc; }
+
+/* Hero status pill */
+body.light .hero-status { background: rgba(0,80,180,0.07); border-color: rgba(0,80,180,0.22); }
+body.light .status-dot  { background: #006644; }
+
+/* Social chips */
+body.light .social-chip { border-color: rgba(0,80,180,0.2); color: var(--text-2); }
+body.light .social-chip:hover { border-color: #0066cc; color: #0066cc; background: rgba(0,80,180,0.07); }
+
+/* Stat divider */
+body.light .stat-div { background: rgba(0,80,180,0.2); }
+
+/* Photo tag */
+body.light .photo-tag { background: var(--bg-2); border-color: var(--border); color: #006644; }
+body.light .tag-dot   { background: #006644; }
+
+/* Scroll hint */
+body.light .scroll-hint { color: var(--text-3); }
+body.light .scroll-line { background: linear-gradient(to bottom, #0066cc, transparent); }
+
+/* Sec num */
+body.light .sec-num { color: #0066cc; }
+
+/* About headline em */
+body.light .about-headline em { color: #0066cc; }
+body.light .contact-headline em { color: #0066cc; }
+
+/* Card key */
+body.light .card-key { color: var(--text-3); }
+
+/* Form inputs */
+body.light .fg input, body.light .fg textarea {
+  background: rgba(255,255,255,0.9);
+  border-color: rgba(0,80,180,0.2);
+  color: var(--text-1);
+}
+body.light .fg input:focus, body.light .fg textarea:focus { border-color: #0066cc; }
+body.light .fg label { color: var(--text-3); }
+
+/* Footer */
+body.light .footer { background: var(--bg-2); border-top-color: var(--border); }
+body.light .footer-links a:hover { color: #0066cc; }
+body.light .footer-resume-btn:hover { color: #0066cc; }
+
+/* More arrow */
+body.light .more-arrow { background: #fff; border-color: rgba(0,80,180,0.2); color: #0066cc; }
+
+/* Nav resume btn */
+body.light .nav-resume { color: #0066cc; border-color: #0066cc; }
+body.light .nav-resume:hover { background: #0066cc; color: #fff; }
+
+/* Btn outline */
+body.light .btn-outline { border-color: #0066cc; color: #0066cc; }
+body.light .btn-outline:hover { background: #0066cc; color: #fff; }
+
+/* Overlay btns */
+body.light .ov-btn.live { background: #0066cc; border-color: #0066cc; color: #fff; }
+
+/* Logo bracket */
+body.light .logo-bracket { color: #0066cc; }
+
+/* Link num */
+body.light .link-num { color: #0066cc; }
+
+/* Modal headers */
+body.light .resume-modal-content,
+body.light .cert-modal-content  { background: var(--bg-2); border-color: var(--border); }
+body.light .resume-modal-header,
+body.light .cert-modal-header   { background: var(--bg-3); border-bottom-color: var(--border); }
 
 /* ===== RESET ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
