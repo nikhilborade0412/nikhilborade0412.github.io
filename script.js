@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (outer) { outer.style.left = ox+"px"; outer.style.top = oy+"px"; }
     requestAnimationFrame(animCursor);
   })();
-  document.querySelectorAll("a, button, .skill-block, .feat-card, .more-card, .pill").forEach(el => {
+  document.querySelectorAll("a, button, .skill-block, .feat-card, .more-card, .cert-card, .pill").forEach(el => {
     el.addEventListener("mouseenter", () => outer && outer.classList.add("expand"));
     el.addEventListener("mouseleave", () => outer && outer.classList.remove("expand"));
   });
@@ -184,22 +184,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  /* =====================================================
-     RESUME MODAL
-     — Opens inline PDF viewer; does NOT trigger download.
-     — Only the "Download" button inside the modal downloads.
-     ===================================================== */
-  const resumeModal    = document.getElementById("resumeModal");
-  const viewResumeBtn  = document.getElementById("viewResumeBtn");      // nav button
-  const footerResumeBtn= document.getElementById("footerResumeBtn");    // footer button
-  const closeResumeBtn = document.getElementById("closeResume");        // ✕ button
+  /* ===== RESUME MODAL ===== */
+  const resumeModal     = document.getElementById("resumeModal");
+  const viewResumeBtn   = document.getElementById("viewResumeBtn");
+  const footerResumeBtn = document.getElementById("footerResumeBtn");
+  const closeResumeBtn  = document.getElementById("closeResume");
 
   function openResume() {
     if (!resumeModal) return;
     resumeModal.classList.add("open");
     document.body.style.overflow = "hidden";
   }
-
   function closeResume() {
     if (!resumeModal) return;
     resumeModal.classList.remove("open");
@@ -209,17 +204,53 @@ document.addEventListener("DOMContentLoaded", () => {
   if (viewResumeBtn)   viewResumeBtn.addEventListener("click", openResume);
   if (footerResumeBtn) footerResumeBtn.addEventListener("click", openResume);
   if (closeResumeBtn)  closeResumeBtn.addEventListener("click", closeResume);
-
-  // Close on backdrop click (outside the modal box)
   if (resumeModal) {
-    resumeModal.addEventListener("click", e => {
-      if (e.target === resumeModal) closeResume();
-    });
+    resumeModal.addEventListener("click", e => { if (e.target === resumeModal) closeResume(); });
   }
 
-  // Close on Escape key
+  /* ===== CERTIFICATE MODAL ===== */
+  function openCertModal(pdfPath, title) {
+    const modal   = document.getElementById("certModal");
+    const iframe  = document.getElementById("certIframe");
+    const titleEl = document.getElementById("certModalTitle");
+    const dlBtn   = document.getElementById("certModalDownload");
+    if (!modal) return;
+
+    iframe.src = pdfPath + "#toolbar=0";
+    titleEl.innerHTML = `
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+      </svg>
+      ${title} — Nikhil Borade`;
+    dlBtn.href     = pdfPath;
+    dlBtn.download = title.replace(/\s+/g, "_") + ".pdf";
+
+    modal.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeCertModal() {
+    const modal  = document.getElementById("certModal");
+    const iframe = document.getElementById("certIframe");
+    if (!modal) return;
+    modal.classList.remove("open");
+    document.body.style.overflow = "";
+    setTimeout(() => { iframe.src = ""; }, 350);
+  }
+
+  // Expose to global scope so inline onclick attributes in HTML work
+  window.openCertModal  = openCertModal;
+  window.closeCertModal = closeCertModal;
+
+  const closeCertBtn = document.getElementById("closeCert");
+  const certModal    = document.getElementById("certModal");
+  if (closeCertBtn) closeCertBtn.addEventListener("click", closeCertModal);
+  if (certModal)    certModal.addEventListener("click", e => { if (e.target === certModal) closeCertModal(); });
+
+  /* ===== ESCAPE KEY — closes any open modal ===== */
   window.addEventListener("keydown", e => {
-    if (e.key === "Escape") closeResume();
+    if (e.key === "Escape") { closeResume(); closeCertModal(); }
   });
 
 });
