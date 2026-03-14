@@ -32,9 +32,10 @@
       <li><a href="#about"><span class="link-num">01.</span>About</a></li>
       <li><a href="#skills"><span class="link-num">02.</span>Skills</a></li>
       <li><a href="#projects"><span class="link-num">03.</span>Projects</a></li>
-      <li><a href="#contact"><span class="link-num">04.</span>Contact</a></li>
+      <li><a href="#achievement"><span class="link-num">04.</span>Achievement</a></li>
+      <li><a href="#certificates"><span class="link-num">05.</span>Certificates</a></li>
+      <li><a href="#contact"><span class="link-num">06.</span>Contact</a></li>
     </ul>
-    <!-- Changed: no download, opens modal instead -->
     <button class="nav-resume" id="viewResumeBtn">Resume ↗</button>
     <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">◐</button>
   </div>
@@ -133,7 +134,6 @@
         <h3 class="about-headline">Building AI that <em>actually ships</em></h3>
         <p>I'm a fresher AI Engineer and Data Scientist with hands-on experience in Machine Learning, Generative AI, NLP, and deploying AI applications on cloud platforms. I'm passionate about building real-world AI systems that solve business problems using data-driven insights.</p>
         <p>I specialize in taking ideas from prototype to production — bridging the gap between research and real-world deployment. Currently seeking my first full-time role where I can contribute and grow fast.</p>
-        <!-- This one stays as download since it's explicitly for downloading -->
         <a href="resume.pdf" download class="btn-outline">Download Resume ↓</a>
       </div>
 
@@ -438,11 +438,128 @@
   </div>
 </section>
 
-<!-- ===== CONTACT ===== -->
-<section class="section section-dark" id="contact">
+<!-- ===== ACHIEVEMENT ===== -->
+<section class="section" id="achievement">
   <div class="section-inner">
     <div class="section-header reveal">
       <span class="sec-num">04</span>
+      <h2 class="sec-title">Achievement</h2>
+    </div>
+
+    <div class="achievement-card reveal">
+      <div class="achievement-left">
+        <div class="achievement-trophy">🏆</div>
+        <div class="achievement-badge">
+          <span class="badge-dot"></span>
+          National Level
+        </div>
+      </div>
+      <div class="achievement-body">
+        <div class="achievement-meta">
+          <span class="ach-tag"><span>🥇</span> Gold Medal</span>
+          <span class="ach-tag muted">2022</span>
+        </div>
+        <h3 class="achievement-title">National Gold Medalist</h3>
+        <p class="achievement-sub">10th National ICF Dragon Boat Racing Championship</p>
+        <div class="achievement-details">
+          <span class="ach-detail"><span class="ach-ico">📍</span>Lower Lake, Bhopal, Madhya Pradesh</span>
+          <span class="ach-detail"><span class="ach-ico">🏛️</span>Represented Maharashtra</span>
+        </div>
+        <p class="achievement-desc">
+          Recognized at a national-level championship organized under the Indian Kayaking and Canoeing Association, affiliated with the Indian Olympic Association.
+        </p>
+        <p class="achievement-quote">
+          <span class="quote-bar"></span>
+          This achievement reflects discipline, endurance, teamwork, and high-performance mindset — qualities I bring into my AI and ML career.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CERTIFICATES ===== -->
+<section class="section section-dark" id="certificates">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="sec-num">05</span>
+      <h2 class="sec-title">Certificates</h2>
+    </div>
+
+    <div class="cert-grid">
+
+      <div class="cert-card reveal">
+        <div class="cert-icon-wrap">
+          <span class="cert-icon">⊗</span>
+        </div>
+        <div class="cert-body">
+          <span class="cert-issuer">Certification</span>
+          <h4 class="cert-title">Machine Learning</h4>
+          <p class="cert-desc">Core ML algorithms, model evaluation, and real-world application techniques.</p>
+        </div>
+        <div class="cert-actions">
+          <button class="cert-view-btn" onclick="openCertModal('certificates/Machine_Learning.pdf', 'Machine Learning')">View ↗</button>
+          <a href="certificates/Machine_Learning.pdf" download class="cert-dl-btn" title="Download">↓</a>
+        </div>
+        <div class="cert-corner-tag">PDF</div>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-icon-wrap">
+          <span class="cert-icon">◈</span>
+        </div>
+        <div class="cert-body">
+          <span class="cert-issuer">Certification</span>
+          <h4 class="cert-title">MySQL</h4>
+          <p class="cert-desc">Database design, querying, and management with MySQL.</p>
+        </div>
+        <div class="cert-actions">
+          <button class="cert-view-btn" onclick="openCertModal('certificates/MySQL.pdf', 'MySQL')">View ↗</button>
+          <a href="certificates/MySQL.pdf" download class="cert-dl-btn" title="Download">↓</a>
+        </div>
+        <div class="cert-corner-tag">PDF</div>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-icon-wrap">
+          <span class="cert-icon">▣</span>
+        </div>
+        <div class="cert-body">
+          <span class="cert-issuer">Certification</span>
+          <h4 class="cert-title">Power BI</h4>
+          <p class="cert-desc">Data visualization, dashboards, and business intelligence with Power BI.</p>
+        </div>
+        <div class="cert-actions">
+          <button class="cert-view-btn" onclick="openCertModal('certificates/Power_BI.pdf', 'Power BI')">View ↗</button>
+          <a href="certificates/Power_BI.pdf" download class="cert-dl-btn" title="Download">↓</a>
+        </div>
+        <div class="cert-corner-tag">PDF</div>
+      </div>
+
+      <div class="cert-card reveal">
+        <div class="cert-icon-wrap">
+          <span class="cert-icon">{ }</span>
+        </div>
+        <div class="cert-body">
+          <span class="cert-issuer">Certification</span>
+          <h4 class="cert-title">Python Programming</h4>
+          <p class="cert-desc">Python fundamentals, data structures, and scripting for real-world use cases.</p>
+        </div>
+        <div class="cert-actions">
+          <button class="cert-view-btn" onclick="openCertModal('certificates/Python_Programming.pdf', 'Python Programming')">View ↗</button>
+          <a href="certificates/Python_Programming.pdf" download class="cert-dl-btn" title="Download">↓</a>
+        </div>
+        <div class="cert-corner-tag">PDF</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="section" id="contact">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="sec-num">06</span>
       <h2 class="sec-title">Get In Touch</h2>
     </div>
 
@@ -522,7 +639,6 @@
     <div class="footer-links">
       <a href="https://github.com/nikhilborade0412" target="_blank">GitHub</a>
       <a href="https://linkedin.com/in/nikhil-borade0412" target="_blank">LinkedIn</a>
-      <!-- Footer resume also opens modal -->
       <button class="footer-resume-btn" id="footerResumeBtn">Resume</button>
     </div>
   </div>
@@ -531,7 +647,6 @@
 <!-- ===== RESUME MODAL ===== -->
 <div class="resume-modal" id="resumeModal">
   <div class="resume-modal-content">
-    <!-- Header bar with title + actions -->
     <div class="resume-modal-header">
       <span class="resume-modal-title">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
@@ -545,9 +660,30 @@
         <button class="resume-close" id="closeResume" aria-label="Close">✕</button>
       </div>
     </div>
-    <!-- PDF viewer -->
     <div class="resume-modal-body">
       <iframe src="resume.pdf#toolbar=0" id="resumeIframe"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CERTIFICATE MODAL ===== -->
+<div class="cert-modal" id="certModal">
+  <div class="cert-modal-content">
+    <div class="cert-modal-header">
+      <span class="cert-modal-title" id="certModalTitle">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Certificate — Nikhil Borade
+      </span>
+      <div class="cert-modal-actions">
+        <a href="#" download id="certModalDownload" class="resume-download-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download
+        </a>
+        <button class="resume-close" id="closeCert" aria-label="Close">✕</button>
+      </div>
+    </div>
+    <div class="resume-modal-body">
+      <iframe id="certIframe" src=""></iframe>
     </div>
   </div>
 </div>
