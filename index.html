@@ -9,6 +9,46 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <link rel="stylesheet" href="style.css">
+<style>
+/* ===== GLOBE LOGO ANIMATIONS ===== */
+@keyframes ng-spin1      { from{transform:rotate(0deg)}   to{transform:rotate(360deg)} }
+@keyframes ng-spin2      { from{transform:rotate(0deg)}   to{transform:rotate(-360deg)} }
+@keyframes ng-halo       { 0%,100%{opacity:.3} 50%{opacity:.6} }
+@keyframes ng-globePulse { 0%,100%{opacity:.85} 50%{opacity:.55} }
+@keyframes ng-flicker    { 0%,94%,100%{opacity:1} 96%{opacity:.4} 98%{opacity:.9} }
+@keyframes ng-orbit1 {
+  from { transform: rotate(0deg)   translateX(108px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(108px) rotate(-360deg); }
+}
+@keyframes ng-orbit2 {
+  from { transform: rotate(200deg) translateX(108px) rotate(-200deg); }
+  to   { transform: rotate(560deg) translateX(108px) rotate(-560deg); }
+}
+@keyframes ng-orbit3 {
+  from { transform: rotate(80deg)  translateX(90px)  rotate(-80deg); }
+  to   { transform: rotate(440deg) translateX(90px)  rotate(-440deg); }
+}
+
+/* Nav globe logo styles */
+.nav-logo-globe {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+.nav-logo-globe:hover {
+  transform: scale(1.1);
+}
+.nav-globe-svg {
+  display: block;
+  overflow: visible;
+  filter: drop-shadow(0 0 5px rgba(0,245,212,0.4));
+  transition: filter 0.3s ease;
+}
+.nav-logo-globe:hover .nav-globe-svg {
+  filter: drop-shadow(0 0 14px rgba(0,245,212,0.75));
+}
+</style>
 </head>
 <body>
 
@@ -25,9 +65,146 @@
 <!-- ===== NAV ===== -->
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="#home" class="nav-logo" id="navBrand">
-      <span class="logo-bracket">[</span>NB<span class="logo-bracket">]</span>
+
+    <!-- GLOBE LOGO replaces [NB] -->
+    <a href="#home" class="nav-logo nav-logo-globe" id="navBrand" aria-label="Nikhil Borade Home">
+      <svg class="nav-globe-svg" width="52" height="52" viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="ng-glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="ng-softGlow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="2" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="ng-nGlow" x="-80%" y="-80%" width="260%" height="260%">
+            <feGaussianBlur stdDeviation="5" result="b1"/>
+            <feGaussianBlur stdDeviation="2" result="b2" in="SourceGraphic"/>
+            <feMerge><feMergeNode in="b1"/><feMergeNode in="b2"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="ng-haloBlur" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="18"/>
+          </filter>
+          <radialGradient id="ng-globeGrad" cx="38%" cy="32%" r="68%">
+            <stop offset="0%"   stop-color="#0cf5e8" stop-opacity="0.22"/>
+            <stop offset="45%"  stop-color="#0466c8" stop-opacity="0.14"/>
+            <stop offset="100%" stop-color="#020810" stop-opacity="0.7"/>
+          </radialGradient>
+          <radialGradient id="ng-globeShine" cx="32%" cy="26%" r="42%">
+            <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.2"/>
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="ng-haloGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stop-color="#00f5d4" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#00f5d4" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="ng-nGrad" x1="0%" y1="0%" x2="80%" y2="100%">
+            <stop offset="0%"   stop-color="#a0ffff"/>
+            <stop offset="50%"  stop-color="#00e8ff"/>
+            <stop offset="100%" stop-color="#00aaff"/>
+          </linearGradient>
+          <clipPath id="ng-globeClip">
+            <circle cx="180" cy="180" r="66"/>
+          </clipPath>
+        </defs>
+
+        <!-- Halo bloom -->
+        <circle cx="180" cy="180" r="105" fill="url(#ng-haloGrad)" filter="url(#ng-haloBlur)"
+          style="animation:ng-halo 3.5s ease-in-out infinite"/>
+
+        <!-- Outermost ghost ring -->
+        <circle cx="180" cy="180" r="138" fill="none" stroke="#00f5d4" stroke-width="0.4" opacity="0.12"/>
+
+        <!-- Slow counter-spin dashed -->
+        <circle cx="180" cy="180" r="128" fill="none" stroke="#1aff8c" stroke-width="0.7" opacity="0.22"
+          stroke-dasharray="5 9"
+          style="transform-origin:180px 180px;animation:ng-spin2 50s linear infinite"/>
+
+        <!-- Mid dashed spin -->
+        <circle cx="180" cy="180" r="118" fill="none" stroke="#00f5d4" stroke-width="1" opacity="0.32"
+          stroke-dasharray="14 5 2 5"
+          style="transform-origin:180px 180px;animation:ng-spin1 22s linear infinite"/>
+
+        <!-- Solid teal ring -->
+        <circle cx="180" cy="180" r="106" fill="none" stroke="#00f5d4" stroke-width="1.4" opacity="0.55"/>
+
+        <!-- Bright spinning arc highlights -->
+        <g style="transform-origin:180px 180px;animation:ng-spin1 7s linear infinite">
+          <path d="M 180,74 A 106,106 0 0 1 286,180" fill="none" stroke="#00f5d4"
+            stroke-width="3" stroke-linecap="round" opacity="0.9" filter="url(#ng-softGlow)"/>
+          <path d="M 180,286 A 106,106 0 0 1 74,180" fill="none" stroke="#1aff8c"
+            stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+        </g>
+
+        <!-- Inner segmented ring -->
+        <circle cx="180" cy="180" r="92" fill="none" stroke="#005577" stroke-width="1.5"
+          stroke-dasharray="2 5" opacity="0.45"
+          style="transform-origin:180px 180px;animation:ng-spin2 14s linear infinite"/>
+
+        <!-- Tick marks -->
+        <g style="transform-origin:180px 180px;animation:ng-spin1 22s linear infinite" opacity="0.8">
+          <line x1="180" y1="62"  x2="180" y2="53"  stroke="#00f5d4" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="180" y1="298" x2="180" y2="307" stroke="#00f5d4" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="42"  y1="180" x2="33"  y2="180" stroke="#00f5d4" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="318" y1="180" x2="327" y2="180" stroke="#00f5d4" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="105" y1="105" x2="98"  y2="98"  stroke="#1aff8c" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="255" y1="255" x2="262" y2="262" stroke="#1aff8c" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="255" y1="105" x2="262" y2="98"  stroke="#1aff8c" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="105" y1="255" x2="98"  y2="262" stroke="#1aff8c" stroke-width="1.2" stroke-linecap="round"/>
+        </g>
+
+        <!-- Orbiting particles -->
+        <g style="transform-origin:180px 180px;animation:ng-orbit1 4.5s linear infinite">
+          <circle cx="180" cy="180" r="5" fill="#00f5d4" filter="url(#ng-glow)"/>
+        </g>
+        <g style="transform-origin:180px 180px;animation:ng-orbit2 4.5s linear infinite">
+          <circle cx="180" cy="180" r="3.5" fill="#1aff8c" filter="url(#ng-glow)"/>
+        </g>
+        <g style="transform-origin:180px 180px;animation:ng-orbit3 7s linear infinite">
+          <circle cx="180" cy="180" r="2.5" fill="#00ccff" filter="url(#ng-softGlow)" opacity="0.85"/>
+        </g>
+
+        <!-- Globe body -->
+        <circle cx="180" cy="180" r="66" fill="url(#ng-globeGrad)"
+          style="animation:ng-globePulse 3s ease-in-out infinite"/>
+
+        <!-- Static latitude lines (clipped) -->
+        <g clip-path="url(#ng-globeClip)" opacity="0.28">
+          <ellipse cx="180" cy="180" rx="66" ry="16" fill="none" stroke="#00f5d4" stroke-width="0.8"/>
+          <ellipse cx="180" cy="180" rx="66" ry="34" fill="none" stroke="#00f5d4" stroke-width="0.8"/>
+          <ellipse cx="180" cy="180" rx="66" ry="52" fill="none" stroke="#00f5d4" stroke-width="0.8"/>
+          <line x1="114" y1="180" x2="246" y2="180" stroke="#00f5d4" stroke-width="0.8"/>
+        </g>
+
+        <!-- Rotating meridians (simulates Earth spinning) -->
+        <g clip-path="url(#ng-globeClip)" opacity="0.28">
+          <ellipse cx="180" cy="180" rx="18" ry="66" fill="none" stroke="#00f5d4" stroke-width="0.8"
+            style="transform-origin:180px 180px;animation:ng-spin1 8s linear infinite"/>
+          <ellipse cx="180" cy="180" rx="18" ry="66" fill="none" stroke="#00f5d4" stroke-width="0.8"
+            style="transform-origin:180px 180px;animation:ng-spin1 8s linear infinite;animation-delay:-2s"/>
+          <ellipse cx="180" cy="180" rx="18" ry="66" fill="none" stroke="#00f5d4" stroke-width="0.8"
+            style="transform-origin:180px 180px;animation:ng-spin1 8s linear infinite;animation-delay:-4s"/>
+          <ellipse cx="180" cy="180" rx="18" ry="66" fill="none" stroke="#00f5d4" stroke-width="0.8"
+            style="transform-origin:180px 180px;animation:ng-spin1 8s linear infinite;animation-delay:-6s"/>
+        </g>
+
+        <!-- Globe shine overlay -->
+        <circle cx="180" cy="180" r="66" fill="url(#ng-globeShine)"/>
+
+        <!-- Globe glowing border -->
+        <circle cx="180" cy="180" r="66" fill="none" stroke="#00f5d4" stroke-width="1.8"
+          opacity="0.75" filter="url(#ng-softGlow)"/>
+
+        <!-- N letterform — glowing, flickering -->
+        <g filter="url(#ng-nGlow)" style="animation:ng-flicker 8s ease-in-out infinite">
+          <path d="M154,150 L154,212 L170,212 L170,178 L192,212 L208,212 L208,150 L192,150 L192,184 L170,150 Z"
+            fill="url(#ng-nGrad)"/>
+          <path d="M155,151 L155,170 L171,151 Z" fill="#ffffff" opacity="0.15"/>
+        </g>
+      </svg>
     </a>
+
     <ul class="nav-links">
       <li><a href="#about"><span class="link-num">01.</span>About</a></li>
       <li><a href="#skills"><span class="link-num">02.</span>Skills</a></li>
@@ -486,11 +663,8 @@
     </div>
 
     <div class="cert-grid">
-
       <div class="cert-card reveal">
-        <div class="cert-icon-wrap">
-          <span class="cert-icon">⊗</span>
-        </div>
+        <div class="cert-icon-wrap"><span class="cert-icon">⊗</span></div>
         <div class="cert-body">
           <span class="cert-issuer">Certification</span>
           <h4 class="cert-title">Machine Learning</h4>
@@ -504,9 +678,7 @@
       </div>
 
       <div class="cert-card reveal">
-        <div class="cert-icon-wrap">
-          <span class="cert-icon">◈</span>
-        </div>
+        <div class="cert-icon-wrap"><span class="cert-icon">◈</span></div>
         <div class="cert-body">
           <span class="cert-issuer">Certification</span>
           <h4 class="cert-title">MySQL</h4>
@@ -520,9 +692,7 @@
       </div>
 
       <div class="cert-card reveal">
-        <div class="cert-icon-wrap">
-          <span class="cert-icon">▣</span>
-        </div>
+        <div class="cert-icon-wrap"><span class="cert-icon">▣</span></div>
         <div class="cert-body">
           <span class="cert-issuer">Certification</span>
           <h4 class="cert-title">Power BI</h4>
@@ -536,9 +706,7 @@
       </div>
 
       <div class="cert-card reveal">
-        <div class="cert-icon-wrap">
-          <span class="cert-icon">{ }</span>
-        </div>
+        <div class="cert-icon-wrap"><span class="cert-icon">{ }</span></div>
         <div class="cert-body">
           <span class="cert-issuer">Certification</span>
           <h4 class="cert-title">Python Programming</h4>
@@ -550,7 +718,6 @@
         </div>
         <div class="cert-corner-tag">PDF</div>
       </div>
-
     </div>
   </div>
 </section>
