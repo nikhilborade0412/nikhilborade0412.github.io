@@ -29,6 +29,24 @@
   to   { transform: rotate(440deg) translateX(90px)  rotate(-440deg); }
 }
 
+/* ===== CRITICAL OVERRIDE: ensure all content visible ===== */
+/* Backup in case script.js IntersectionObserver is blocked or slow */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.in-view {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+/* Hero always visible immediately — no waiting */
+.hero .reveal {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  transition: opacity 0.5s ease, transform 0.5s ease !important;
+}
+
 /* Nav globe logo styles */
 .nav-logo-globe {
   display: flex;
@@ -68,7 +86,7 @@
 
     <!-- GLOBE LOGO replaces [NB] -->
     <a href="#home" class="nav-logo nav-logo-globe" id="navBrand" aria-label="Nikhil Borade Home">
-      <svg class="nav-globe-svg" width="52" height="52" viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+      <svg class="nav-globe-svg" width="36" height="36" viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <filter id="ng-glow" x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation="3" result="b"/>
@@ -252,7 +270,7 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <div class="hero-socials">
-          <a href="mailto:nikhilsborade3@gmail.com" class="social-chip" title="Email">✉</a>
+          <a href="#" id="heroEmailChip" class="social-chip" title="Email">✉</a>
           <a href="https://linkedin.com/in/nikhil-borade0412" target="_blank" class="social-chip" title="LinkedIn">in</a>
           <a href="https://github.com/nikhilborade0412" target="_blank" class="social-chip" title="GitHub">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
@@ -341,7 +359,7 @@
         </div>
         <div class="card-row">
           <span class="card-key">Email</span>
-          <span class="card-val">nikhilsborade3@gmail.com</span>
+          <span class="card-val"><span id="aboutEmailVal">nikhilsborade3 [at] gmail.com</span></span>
         </div>
       </div>
     </div>
@@ -736,11 +754,11 @@
         <p>Open to full-time roles, internships, and collaborations in AI, ML, and Data Science. If you're looking for a motivated fresher who ships real projects — let's talk.</p>
 
         <div class="contact-links">
-          <a href="mailto:nikhilsborade3@gmail.com" class="clink">
+          <a href="#" id="emailClink" class="clink">
             <span class="clink-ico">✉</span>
             <div>
               <span class="clink-label">Email</span>
-              <span class="clink-val">nikhilsborade3@gmail.com</span>
+              <span class="clink-val" id="emailVal">nikhilsborade3 [at] gmail.com</span>
             </div>
           </a>
           <a href="tel:+919421512632" class="clink">
@@ -856,5 +874,41 @@
 </div>
 
 <script src="script.js"></script>
+<script>
+// Set email via JS to keep it visible (bypasses Cloudflare obfuscation)
+(function() {
+  var u = 'nikhilsborade3';
+  var d = 'gmail.com';
+  var email = u + '@' + d;
+  var mailto = 'mailto:' + email;
+  // Contact section
+  var el = document.getElementById('emailVal');
+  var link = document.getElementById('emailClink');
+  if (el) el.textContent = email;
+  if (link) link.href = mailto;
+  // About card
+  var aboutEl = document.getElementById('aboutEmailVal');
+  if (aboutEl) aboutEl.textContent = email;
+  // Hero social chip
+  var heroChip = document.getElementById('heroEmailChip');
+  if (heroChip) heroChip.href = mailto;
+})();
+
+// Force all reveal elements visible immediately — fixes blank screen if IntersectionObserver is slow
+(function() {
+  function showAll() {
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      el.classList.add('in-view');
+    });
+    document.querySelectorAll('.skill-block').forEach(function(el) {
+      el.classList.add('in-view');
+    });
+  }
+  showAll();
+  setTimeout(showAll, 80);
+  setTimeout(showAll, 400);
+  document.addEventListener('DOMContentLoaded', showAll);
+})();
+</script>
 </body>
 </html>
