@@ -160,40 +160,37 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => el.classList.add("in-view"), i * 110 + 60);
   });
 
-/* ===== EMAILJS ===== */
-document.addEventListener("DOMContentLoaded", function () {
-
+  /* ===== EMAILJS ===== */
   emailjs.init("nU75PecxW6K6vssR8");
 
   const form = document.getElementById("contactForm");
-  const msg = document.getElementById("statusMsg");
+  const msg  = document.getElementById("statusMsg");
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-    msg.innerText = "Sending...";
+      msg.style.color = "";
+      msg.innerText = "Sending...";
 
-    // 🔵 Admin Email
-    emailjs.sendForm("service_vma8vc6", "template_nzsnyop", form)
-      .then(() => {
-
-        // 🟢 User Auto Reply
-        return emailjs.sendForm("service_vma8vc6", "template_odou3q9", form);
-
-      })
-      .then(() => {
-        msg.innerText = "Message sent successfully!";
-        msg.style.color = "green";
-        form.reset();
-      })
-      .catch((error) => {
-        console.error("ERROR:", error);
-        msg.innerText = "Failed to send message";
-        msg.style.color = "red";
-      });
-  });
-
-});
+      // 1️⃣ Send to YOU (ADMIN)
+      emailjs.sendForm("service_vma8vc6", "template_nzsnyop", form)
+        .then(function () {
+          // 2️⃣ Send auto-reply to USER
+          return emailjs.sendForm("service_vma8vc6", "template_odou3q9", form);
+        })
+        .then(function () {
+          msg.style.color = "green";
+          msg.innerText = "Message sent successfully!";
+          form.reset();
+        })
+        .catch(function (error) {
+          console.error("ERROR:", error);
+          msg.style.color = "red";
+          msg.innerText = "Failed to send message";
+        });
+    });
+  }
 
   /* ===== RESUME MODAL ===== */
   const resumeModal     = document.getElementById("resumeModal");
