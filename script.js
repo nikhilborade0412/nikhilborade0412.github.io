@@ -168,33 +168,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const msg  = document.getElementById("statusMsg");
 
     if (form && msg) {
-      form.addEventListener("submit", function(e) {
+      form.addEventListener("submit", function (e) {
         e.preventDefault();
 
         msg.style.color = "var(--text-2)";
         msg.textContent = "Sending...";
 
-        // 🔵 1. Send notification email to YOU (Admin)
-        // ⚠️ Replace "ADMIN_TEMPLATE_ID" with your actual admin template ID (e.g. template_xxxxxx)
+        // 1. Send notification email to Admin
         emailjs.sendForm("service_vma8vc6", "template_nzsnyop", this)
           .then(() => {
             console.log("Admin email sent");
-          })
-          .catch(err => {
-            console.error("Admin email error:", err);
-          });
 
-        // 🟢 2. Send auto-reply confirmation to USER
-        emailjs.sendForm("service_vma8vc6", "template_odou3q9", this)
+            // 2. Send auto-reply confirmation to User
+            return emailjs.sendForm("service_vma8vc6", "template_odou3q9", form);
+          })
           .then(() => {
             msg.style.color = "var(--accent-3)";
             msg.textContent = "Message sent successfully! 🚀";
             form.reset();
           })
-          .catch(err => {
-            console.error("User auto-reply error:", err);
+          .catch((error) => {
+            console.error("EmailJS Error:", error);
             msg.style.color = "#f87171";
-            msg.textContent = "Failed. Please try again.";
+            msg.textContent = "Failed to send message. Please try again.";
           });
       });
     }
