@@ -163,22 +163,38 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ===== EMAILJS ===== */
   if (typeof emailjs !== "undefined") {
     emailjs.init("nU75PecxW6K6vssR8");
+
     const form = document.getElementById("contactForm");
     const msg  = document.getElementById("statusMsg");
+
     if (form && msg) {
       form.addEventListener("submit", function(e) {
         e.preventDefault();
-        msg.style.color = "var(--text-2)"; msg.textContent = "Sending...";
+
+        msg.style.color = "var(--text-2)";
+        msg.textContent = "Sending...";
+
+        // 🔵 1. Send notification email to YOU (Admin)
+        // ⚠️ Replace "ADMIN_TEMPLATE_ID" with your actual admin template ID (e.g. template_xxxxxx)
+        emailjs.sendForm("service_vma8vc6", "template_nzsnyop", this)
+          .then(() => {
+            console.log("Admin email sent");
+          })
+          .catch(err => {
+            console.error("Admin email error:", err);
+          });
+
+        // 🟢 2. Send auto-reply confirmation to USER
         emailjs.sendForm("service_vma8vc6", "template_odou3q9", this)
           .then(() => {
             msg.style.color = "var(--accent-3)";
-            msg.textContent = "Message sent! I'll get back to you soon.";
+            msg.textContent = "Message sent successfully! 🚀";
             form.reset();
           })
           .catch(err => {
-            console.error(err);
+            console.error("User auto-reply error:", err);
             msg.style.color = "#f87171";
-            msg.textContent = "Failed. Please email me directly.";
+            msg.textContent = "Failed. Please try again.";
           });
       });
     }
