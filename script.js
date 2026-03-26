@@ -161,40 +161,39 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ===== EMAILJS ===== */
-  if (typeof emailjs !== "undefined") {
-    emailjs.init("nU75PecxW6K6vssR8");
+  (function () {
+    emailjs.init("nU75PecxW6K6vssR8"); // your public key
+  })();
 
+  document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("contactForm");
     const msg  = document.getElementById("statusMsg");
+    if (!form) return;
 
-    if (form && msg) {
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-        msg.style.color = "var(--text-2)";
-        msg.textContent = "Sending...";
+      msg.style.color = "black";
+      msg.textContent = "Sending...";
 
-        // 1. Send notification email to Admin
-        emailjs.sendForm("service_vma8vc6", "template_nzsnyop", this)
-          .then(() => {
-            console.log("Admin email sent");
-
-            // 2. Send auto-reply confirmation to User
-            return emailjs.sendForm("service_vma8vc6", "template_odou3q9", form);
-          })
-          .then(() => {
-            msg.style.color = "var(--accent-3)";
-            msg.textContent = "Message sent successfully! 🚀";
-            form.reset();
-          })
-          .catch((error) => {
-            console.error("EmailJS Error:", error);
-            msg.style.color = "#f87171";
-            msg.textContent = "Failed to send message. Please try again.";
-          });
-      });
-    }
-  }
+      // 1️⃣ Send to YOU (ADMIN)
+      emailjs.sendForm("service_vma8vc6", "template_nzsnyop", this)
+        .then(function () {
+          // 2️⃣ Send auto-reply to USER
+          return emailjs.sendForm("service_vma8vc6", "template_odou3q9", form);
+        })
+        .then(function () {
+          msg.style.color = "green";
+          msg.textContent = "Message sent successfully!";
+          form.reset();
+        })
+        .catch(function (error) {
+          console.error("ERROR:", error);
+          msg.style.color = "red";
+          msg.textContent = "Failed to send message";
+        });
+    });
+  });
 
   /* ===== RESUME MODAL ===== */
   const resumeModal     = document.getElementById("resumeModal");
