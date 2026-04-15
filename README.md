@@ -159,4 +159,3 @@ Grade: A
 ✔ Strong NLP & Data Science Skills  
 
 ---
-open index.html
