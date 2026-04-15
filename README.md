@@ -1,84 +1,158 @@
-# 🌐 Nikhil Borade - Portfolio
+# 🌐 Nikhil Borade - Data Scientist | AI/ML Engineer Portfolio
 
-Welcome to my personal portfolio website 🚀  
-This portfolio showcases my skills, projects, and experience in **Data Science, Machine Learning, and Web Development**.
-
-🔗 **Live Portfolio:**  
+🚀 **Live Portfolio:**  
 👉 https://nikhilborade0412.github.io/
 
 ---
 
 ## 👨‍💻 About Me
 
-Hi, I'm **Nikhil Borade**  
-🎓 B.Sc Computer Science Student  
-📍 Nashik, Maharashtra  
+Hi, I'm **Nikhil Somnath Borade**  
+📍 Pune, Maharashtra, India  
 
-I am passionate about building **AI-powered applications, Data Science projects, and scalable web solutions**.  
-Currently focused on becoming a **high-level Data Scientist / ML Engineer**.
-
----
-
-## 🚀 Skills
-
-### 💻 Programming
-- Python
-- SQL
-- JavaScript
-
-### 📊 Data Science & ML
-- Pandas, NumPy
-- Scikit-learn
+🎯 Results-oriented Computer Science graduate with hands-on experience in:
 - Machine Learning
-- Data Analysis
-- NLP (Natural Language Processing)
+- NLP
+- Generative AI
+- Agentic AI Systems  
 
-### 📈 Data Visualization
-- Power BI
-- Tableau
-- Matplotlib / Seaborn
+I specialize in building **end-to-end AI applications**, including:
+- LLM-based systems (LangChain, RAG)
+- Production ML models
+- Cloud deployment (AWS EC2)
 
-### 🌐 Web Development
-- HTML
-- CSS
-- JavaScript
-- Streamlit
+📌 Actively seeking **Data Scientist / AI-ML Engineer roles**
 
 ---
 
-## 📂 Projects
+## 🧠 Technical Skills
 
-### 🔹 Sentiment Analysis (Flipkart Reviews)
-- Built ML model to classify customer sentiment
-- Deployed using Streamlit
-- Used NLP techniques for text processing
+### 💻 Languages
+- Python
+- SQL (MySQL)
 
-### 🔹 Travel Package Prediction
-- Predicts customer purchase behavior
-- End-to-end ML pipeline
+### 🤖 Machine Learning & Deep Learning
+- Scikit-learn
+- TensorFlow, Keras
+- Hyperparameter Tuning
+- Optimizers (Adam, SGD)
+- Loss Functions
+
+### 🧠 Generative AI
+- Gemini 2.5 Flash
+- OpenAI
+- Ollama
+- Prompt Engineering
+- RAG Pipelines
+- Transformers
+
+### 🤖 Agentic AI
+- LangChain
+- LlamaIndex
+- Tool Calling Agents
+- Multi-tool Routing
+- Memory Systems
+
+### 🧾 NLP
+- NLTK
+- TF-IDF
+- Tokenization
+- Lemmatization
+- Sentiment Analysis
+
+### 🗄️ Databases
+- MySQL
+- MongoDB
+- Vector DBs (FAISS, Pinecone)
+
+### 🚀 Deployment & Tools
+- Streamlit
+- FastAPI
+- AWS EC2
+- Git & GitHub
+- Jupyter Notebook
+- VS Code
+
+### 📊 Visualization
+- Matplotlib
+- Seaborn
+- Power BI
+
+---
+
+## 🚀 Projects
+
+### 🔹 NL2SQL Clinic Chatbot
+📅 Mar 2026  
+- Built Natural Language to SQL system using **Vanna AI + FastAPI**
+- Integrated **Gemini LLM + SQL execution + charts**
+- Implemented **SQL injection protection + validation**
+- Handled 500+ appointments & 200+ patients dataset
+
+---
+
+### 🔹 PharmaGen AI – GenAI Assistant
+📅 Feb 2026  
+- Built domain-specific chatbot using **Gemini 2.5 Flash**
+- Implemented **context-aware conversations**
+- Deployed on **AWS EC2 (Streamlit app)**
+
+---
+
+### 🔹 Sentiment Analysis (NLP)
+📅 Jan 2026  
+- Built complete NLP pipeline (TF-IDF + preprocessing)
+- Compared models: Logistic Regression, SVM, Naive Bayes
+- Achieved **92%+ F1-score**
 - Deployed on AWS EC2
 
-### 🔹 AI Chatbot (PharmaGen)
-- Built using LLM (LangChain + Gemini)
-- Domain-specific chatbot for pharma industry
+---
+
+### 🔹 Travel Package Prediction
+📅 Dec 2025  
+- Built ML model using **Random Forest**
+- Performed feature engineering & model evaluation
+- Developed real-time prediction app (Streamlit)
+
+---
+
+## 🎓 Education
+
+🎓 **Bachelor of Computer Science**  
+Savitribai Phule Pune University  
+Grade: A  
+
+---
+
+## 📜 Certifications
+
+- Python Programming – Innomatics Research Labs  
+- Machine Learning – Innomatics Research Labs  
+- MySQL – Innomatics Research Labs  
+- Power BI – Innomatics Research Labs  
+- Mastering Multilingual GenAI – Analytics Vidhya  
+- Advanced Data Science with Python – Nasscom  
 
 ---
 
 ## 📄 Resume
 
-📥 [Download Resume](./resume.pdf)
+📥 [Download Resume](./resume.pdf)  
+(Also available here: :contentReference[oaicite:0]{index=0})
 
 ---
 
-## 📬 Contact Me
+## 📬 Contact
 
-📧 Email: your-email@example.com  
-💼 LinkedIn: https://linkedin.com/in/your-profile  
+📧 Email: nikhilsborade3@gmail.com  
+📱 Phone: +91 9421512632  
+
+🔗 LinkedIn: https://linkedin.com/in/nikhil-borade0412  
 🐙 GitHub: https://github.com/nikhilborade0412  
 
 ---
 
-## ⚙️ Tech Stack Used
+## ⚙️ Tech Stack Used (Portfolio)
 
 - HTML5, CSS3, JavaScript
 - GitHub Pages (Deployment)
@@ -86,11 +160,12 @@ Currently focused on becoming a **high-level Data Scientist / ML Engineer**.
 
 ---
 
-## 🌟 Features
+## 🌟 Key Highlights
 
-- Clean UI & Responsive Design
-- Project Showcase Section
-- Resume Download Option
-- Contact Section
+✔ End-to-End ML & AI Projects  
+✔ LLM + Agentic AI Systems  
+✔ AWS Deployment Experience  
+✔ Strong NLP & Data Science Skills  
 
 ---
+open index.html
