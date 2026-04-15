@@ -27,56 +27,47 @@ I specialize in building **end-to-end AI applications**, including:
 
 ## 🧠 Technical Skills
 
-### 💻 Languages
-- Python
-- SQL (MySQL)
+<table>
+<tr>
+<td><b>💻 Languages</b></td>
+<td>Python • SQL (MySQL)</td>
+</tr>
 
-### 🤖 Machine Learning & Deep Learning
-- Scikit-learn
-- TensorFlow, Keras
-- Hyperparameter Tuning
-- Optimizers (Adam, SGD)
-- Loss Functions
+<tr>
+<td><b>🤖 Machine Learning & DL</b></td>
+<td>Scikit-learn • TensorFlow • Keras • Hyperparameter Tuning • Optimizers (Adam, SGD) • Loss Functions</td>
+</tr>
 
-### 🧠 Generative AI
-- Gemini 2.5 Flash
-- OpenAI
-- Ollama
-- Prompt Engineering
-- RAG Pipelines
-- Transformers
+<tr>
+<td><b>🧠 Generative AI</b></td>
+<td>Gemini 2.5 Flash • OpenAI • Ollama • Prompt Engineering • RAG Pipelines • Transformers</td>
+</tr>
 
-### 🤖 Agentic AI
-- LangChain
-- LlamaIndex
-- Tool Calling Agents
-- Multi-tool Routing
-- Memory Systems
+<tr>
+<td><b>🤖 Agentic AI</b></td>
+<td>LangChain • LlamaIndex • Tool Calling Agents • Multi-tool Routing • Memory Systems</td>
+</tr>
 
-### 🧾 NLP
-- NLTK
-- TF-IDF
-- Tokenization
-- Lemmatization
-- Sentiment Analysis
+<tr>
+<td><b>🧾 NLP</b></td>
+<td>NLTK • TF-IDF • Tokenization • Lemmatization • Sentiment Analysis</td>
+</tr>
 
-### 🗄️ Databases
-- MySQL
-- MongoDB
-- Vector DBs (FAISS, Pinecone)
+<tr>
+<td><b>🗄️ Databases</b></td>
+<td>MySQL • MongoDB • FAISS • Pinecone</td>
+</tr>
 
-### 🚀 Deployment & Tools
-- Streamlit
-- FastAPI
-- AWS EC2
-- Git & GitHub
-- Jupyter Notebook
-- VS Code
+<tr>
+<td><b>🚀 Deployment & Tools</b></td>
+<td>Streamlit • FastAPI • AWS EC2 • Git • GitHub • Jupyter Notebook • VS Code</td>
+</tr>
 
-### 📊 Visualization
-- Matplotlib
-- Seaborn
-- Power BI
+<tr>
+<td><b>📊 Visualization</b></td>
+<td>Matplotlib • Seaborn • Power BI</td>
+</tr>
+</table>
 
 ---
 
@@ -138,7 +129,7 @@ Grade: A
 ## 📄 Resume
 
 📥 [Download Resume](./resume.pdf)  
-(Also available here: :contentReference[oaicite:0]{index=0})
+
 
 ---
 
